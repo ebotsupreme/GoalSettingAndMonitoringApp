@@ -1,0 +1,47 @@
+angular.module('mainCtrl', [])
+
+  .controller('mainController', function($rootScope, $location, auth){
+
+    var mainCtrl = this;
+
+    // get info if a person is logged in
+    mainCtrl.loggedIn = auth.isLoggedIn
+
+    // check to see if a user is logged in on every request
+    $rootScope.$on('$routeChangeStart', function(){
+      mainCtrl.loggedIn = auth.isLoggedIn();
+
+
+      // get user information on page load
+      auth.getUser()
+      .then(function(data){
+        mainCtrl.user = data.data;
+      });
+    });
+
+    // function to handle login form
+    mainCtrl.doLogin = function(){
+      mainCtrl.processing = true;
+
+      // clear the error
+      mainCtrl.error = '';
+
+    // if a user successfully logs in, redirect to users page
+    auth.login(mainCtrl.loginData.username, mainCtrl.loginData.password)
+      .success(function(data){
+        mainCtrl.processing = false;
+
+        if(data.success)
+          $location.path('/users');
+        else
+          mainCtrl.error = data.message;
+      });
+    };
+    // function to handle logging out
+    mainCtrl.doLogout = function(){
+      auth.logout();
+      mainCtrl.user = '';
+
+      $location.path('/login');
+    };
+  });
