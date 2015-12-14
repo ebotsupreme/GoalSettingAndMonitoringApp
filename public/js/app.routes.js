@@ -24,7 +24,12 @@
           controller : 'placeholderController',
           controllerAs : 'placeholder'
         })
-
+        // profile page when logged in
+        .when('/profile', {
+          templateUrl : 'partials/profile.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
+        })
 
         .otherwise({
           redirectTo: '/'
