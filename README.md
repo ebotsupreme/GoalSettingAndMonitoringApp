@@ -7,8 +7,7 @@ Track:
 	Due date option (goal could be to just work on / practice something or do 1 or more things over a given time) - there’s an issue with angular & mongo date types working together (per Ivy) so store in Mongodb as string
 2. estimated time devoted each day
 3. quality/intensity (1 to 10 self rating)
-4. daily feeling result (1 to 10 self rating)
-5. daily perceived result of activity  (1 to 10 self rating)
+4. daily perceived result of activity  (1 to 10 self rating)
 
 Display graphs & charts & bubbles with D3.
 
