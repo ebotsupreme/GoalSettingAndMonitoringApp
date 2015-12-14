@@ -1,39 +1,49 @@
-var mongoose     = require('mongoose');
-var Schema       = mongoose.Schema;
-var bcrypt 		 = require('bcrypt-nodejs');
+var mongoose  = require('mongoose');
+var Schema    = mongoose.Schema;
+var bcrypt 		= require('bcrypt-nodejs');
 
 //goal
 var GoalsSchema = new Schema({
-  goal_or_task: String, 
+  goal_or_task: String, //used as a dropdown for monitoring
   //e.g. heirarchy: Learn Web, learn MEAN, learn Angular, read up on angular, read a particular tutorial
   //e.g. heirarchy: Learn Web, learn MEAN, make an app, do 1 task toward the making it
   //e.g. keep in shape, do cardio and weights, do a particular workout each day
-  sub_goals_or_tasks: [{type: Schema.ObjectId, ref: 'GoalsSchema'}]  //OR: Schema.Types.ObjectId ?
-  zen_level: Number, //zen type is single=1, recurring=2 or hours per week=3(due date null if 3)
+  date_created: String, //or ? { type: Date, default: Date.now },
+  priority: Number, //s/w will prevent duplicates at same nested-level for each parent, each level adds a parent.child (e.g. 1.3.2.1)
+  zen_level: Number, //zen type is do only once=3, repeat a few times=2 or indefinite time/maintenance(do a few hours per week)=1(due date null if 3)
   reminder: Boolean, //if a daily reminder is wanted
   optional_due_date: String, //only applies to zen type 1 or 2, but still optional
   completed: Boolean, //only applies to zen type 1 or 2
-  priority: Number, //s/w will prevent duplicates at same nested-level for each parent, each level adds a parent.child (e.g. 1.3.2.1)
-  is_public: Boolean, //non-MVP, true will display this goal and user's id to all users who are logged in or not
-  is_archived: Boolean, //non-MVP
-	monitoring: [{   //daily or whenever they choose to fill it in
-		time_taken: String, 
-		quality: Number,  //quality of study or intensity of workout, ...
-		feeling_result: Number,  //how user feels about the effort
-		percieved_result: Number,  //noticeable results so far
+  //is_public: Boolean, //non-MVP, true will display this goal and user's id to all users who are logged in or not
+  //is_archived: Boolean, //non-MVP
+  sub_goals_or_tasks: [{type: Schema.ObjectId, ref: 'GoalsSchema'}],  //OR: Schema.Types.ObjectId ?
+  monitoring: [{   //daily or whenever they choose to fill it in
+    m_date: String, //or ? { type: Date, default: Date.now },
+	  hours_devoted: Number, //since last monitoring
+	  quality: Number,  //quality of activity(study, etc.) rating, etc. since last mon... 1-10, 10 best
+	  percieved_result: Number,  //noticeable results rating since last monitoring 1-10, 10 best
     comment: String
-	}]
+  }]
 })
 var Goals = mongoose.model('Goals', GoalsSchema)
 
 // user schema
 var UserSchema   = new Schema({
-	name: String,
+  name: String,
 	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false }
+	password: { type: String, required: true, select: false },
 	goals: [Goals]  //OR is this: [{type: Schema.ObjectId, ref: 'GoalsSchema'}] ? //OR: Schema.Types.ObjectId ?
-	//TBD later friends and collaboration (not MVP)
+	// To add: user.goal.push({...})
+  // To find:
+  //   var goal = user.goal.id(id);
+  //    or index: var goal1 = user.goal[0];
+  // To delete:
+  //   var doc = user.goal.id(id).remove();
+  //afer each: user.save(function (err) {
+
+  //TBD later friends and collaboration (not MVP)
 });
+
 	//google nested schema mongo (many objects in records as well as many nested sub levels )
 	// or embedded documents:
 	//E.g.
@@ -52,6 +62,17 @@ var UserSchema   = new Schema({
   Person = new Schema
     mother: { type: Schema.ObjectId, ref: 'Person' }
     father: { type: Schema.ObjectId, ref: 'Person' }
+
+
+***Also see:
+http://mongoosejs.com/docs/populate.html
+
+There are no joins in MongoDB but sometimes we still want references to documents in other collections. 
+This is where population comes in.
+
+Population is the process of automatically replacing the specified paths in the document with document(s) 
+from other collection(s). We may populate a single document, multiple documents, plain object, multiple 
+plain objects, or all objects returned from a query.
 */
 
 
