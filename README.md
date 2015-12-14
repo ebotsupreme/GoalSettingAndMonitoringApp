@@ -58,6 +58,15 @@ https://trello.com/b/FsuLxpQI/goal-setting-and-monitoring-app
 ![alt text](wireframes/Goalmonitoringform.png)
 ![alt text](wireframes/Monitorinfo.png)
 
+https://cloud.githubusercontent.com/assets/13035354/11770971/ffe9eb06-a1be-11e5-97e0-d1e30a6b5999.png
+https://cloud.githubusercontent.com/assets/13035354/11770975/05fea4e6-a1bf-11e5-8fcd-75b7302999a2.png
+https://cloud.githubusercontent.com/assets/13035354/11770978/0fcdbbf6-a1bf-11e5-94eb-4780a77482fb.png
+https://cloud.githubusercontent.com/assets/13035354/11770980/1890f96a-a1bf-11e5-9397-179ffad2f34a.png
+https://cloud.githubusercontent.com/assets/13035354/11770984/216339cc-a1bf-11e5-96cd-99e928304c47.png
+https://cloud.githubusercontent.com/assets/13035354/11770987/27030d62-a1bf-11e5-8122-e98aba094f05.png
+https://cloud.githubusercontent.com/assets/13035354/11770989/2dde3468-a1bf-11e5-8d3d-280d687d49e6.png
+https://cloud.githubusercontent.com/assets/13035354/11770991/33caa730-a1bf-11e5-83af-319366fb05a3.png
+
 
 ### Coding Style Guide:
 https://github.com/felixge/node-style-guide
