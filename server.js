@@ -1,19 +1,19 @@
 var
 	express = require('express'),
 	app = express(),
-	ejs = require('ejs'),
+	// ejs = require('ejs'),
 	logger = require('morgan'),
 	path = require('path'),
 	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	apiRoutes = require('./routes/api.js')
+	bodyParser = require('body-parser')
+	//apiRoutes = require('./routes/api.js')
 
 mongoose.connect('mongodb://localhost/goals_app', function(err){
 	if(err) throw err
 	console.log('Connected to MongoDB')
 })
 
-app.set('view engine', 'ejs')
+// app.set('view engine', 'ejs')
 
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({extended: true}))
@@ -22,10 +22,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req,res){
 	console.log('getting index...')
-	res.render('index')
+	// res.render('index')
+	res.sendFile(__dirname + '/public/index.html')
 })
 
-app.use('/api', apiRoutes)
+//app.use('/api', apiRoutes)
 
 app.listen(3000, function(){
 	console.log('Server Listening on port 3000...')
