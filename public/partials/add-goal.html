@@ -1,36 +1,49 @@
 <div class="row col-md-6 col-md-offset-3">
 
 	<div class="jumbotron">
-		<h1>Add A Goal</h1>
+		<h1 id="add-a-goal-header">Add A Goal</h1>
 
 		<form >
 
 			<div class="form-group">
-				<label>Goal</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" placeholder="Goal:">
 			</div>
 
 			<div class="form-group">
-				<label>Last Name</label>
-				<input type="text" class="form-control" >
+				<input type="text" class="form-control" placeholder="Zen Level:">
 			</div>
 
-			<div class="form-group">
-				<label>Email</label>
-				<input type="text" class="form-control" >
+			<div id="input-bar-half" class="form-group pull-left">
+				<input type="text" class="form-control" placeholder="Due Date:">
 			</div>
 
-			<div class="form-group">
-				<label>Password</label>
-				<input type="password" class="form-control" >
+			<div  id="input-bar-half" class="form-group pull-right">
+				<input type="text" class="form-control" placeholder="Priority:">
 			</div>
 
-			<div class="form-group">
-				<label>Confirm Password</label>
-				<input type="password" class="form-control" >
-			</div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span id="checkbox-border" class="input-group-addon">
+              <input type="checkbox" aria-label="...">
+            </span>
+            <p id="completed-placement">Completed</p>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div>
+      <br>
 
-
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <span id="checkbox-border" class="input-group-addon">
+              <input type="checkbox" aria-label="...">
+            </span>
+            <p id="completed-placement">Daily Reminder?</p>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div>
+      <br>
 
 			<button type="submit" class="btn btn-block btn-primary">
 				<span>Submit</span>

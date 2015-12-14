@@ -30,6 +30,12 @@
           controller : 'placeholderController',
           controllerAs : 'placeholder'
         })
+        // add a goal page
+        .when('/addgoal', {
+          templateUrl : 'partials/add-goal.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
+        })
 
         .otherwise({
           redirectTo: '/'
