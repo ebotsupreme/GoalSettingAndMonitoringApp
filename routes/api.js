@@ -12,14 +12,16 @@ apiRouter.get('/', function(req,res){
 })
 
 //Read all and Create one (Also use this for cycling through all users)
-//TBD how to post sub-goals?
+
 apiRouter.route('/users/:user_id/goals')
 	.get(function(req,res){
 		Goal.find({}, function(err, goals){ //TBD change to find for given user
 			res.json(goals)
 		})
 	})
-	.post(function(req,res){
+	//TBD this might be a different route
+	.post(function(req,res){  //TBD how to post sub-goals? 
+		                      //(need to pass in parent goal id that it gets pushed into)
 		var newGoal = new Goal
 		newGoal.goal_or_task = req.body.goal_or_task
 		newGoal.date_created = req.body.date_created
@@ -29,7 +31,7 @@ apiRouter.route('/users/:user_id/goals')
 		newGoal.completed = req.body.completed
 		newGoal.priority = req.body.priority
 
-		//TBD attach to given user
+		//TBD attach to given user, then save user
 
 		newGoal.save(function(err, goal){
 			if(err) throw err
