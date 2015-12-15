@@ -36,9 +36,15 @@
           controller : 'placeholderController',
           controllerAs : 'placeholder'
         })
+        // goal monitor
+        .when('/goalmonitor', {
+          templateUrl : 'partials/goal-monitor.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
+        })
 
         .otherwise({
-          redirectTo: '/'
+          redirectTo: '/home'
         })
     }
 
