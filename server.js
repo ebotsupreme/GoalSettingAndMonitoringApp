@@ -1,14 +1,19 @@
 var
-	express = require('express'),
-	app = express(),
-	ejs = require('ejs'),
-	logger = require('morgan'),
-	path = require('path'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	apiRoutes = require('./routes/api.js')
+	express     = require('express'),
+	app         = express(),
+	ejs         = require('ejs'),
+	logger      = require('morgan'),
+	path        = require('path'),
+	mongoose    = require('mongoose'),
+	bodyParser  = require('body-parser'),
+	apiRoutes   = require('./routes/api.js')
 
-mongoose.connect('mongodb://localhost/goals_app', function(err){
+var port        = process.env.PORT || 3000;
+
+//if using local db:
+//mongoose.connect('mongodb://localhost/goals_app', function(err){
+//if using mongolab.com's db:
+mongoose.connect('mongodb://goals_app:houfu@ds029595.mongolab.com:29595/goals_app', function(err){
 	if(err) throw err
 	console.log('Connected to MongoDB')
 })
@@ -27,6 +32,6 @@ app.get('/', function(req,res){
 
 app.use('/api', apiRoutes)
 
-app.listen(3000, function(){
-	console.log('Server Listening on port 3000...')
+app.listen(port, function(){
+	console.log('Server Listening on port ' + port)
 })
