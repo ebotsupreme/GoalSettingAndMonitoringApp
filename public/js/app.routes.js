@@ -36,6 +36,12 @@
           controller : 'placeholderController',
           controllerAs : 'placeholder'
         })
+        // goal monitor form
+        .when('/goalmonitorform', {
+          templateUrl : 'partials/goal-monitor-form.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
+        })
         // goal monitor
         .when('/goalmonitor', {
           templateUrl : 'partials/goal-monitor.html',
