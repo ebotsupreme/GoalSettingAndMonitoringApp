@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "angular-bootstrap-npm": "^0.14.3",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",

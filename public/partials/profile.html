@@ -1,31 +1,97 @@
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-sm-3">
-          <h2>Goal sidebar</h2>
-          <div id="side-bar" class="row col-md-6 col-md-offset-3">
-            <div id="side-bar-content">
-              <h3>Goal News</h3>
-              <h3>My Goals</h3>
-              <h3>Add Goal</h3>
-              <h3>Settings</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <h1 id="my-goals-header">My Goals</h1>
-          <div class="">
-            <div class="jumbotron">
-              <h2>Jake Shield</h2>
-              <p>Goals: Practice Angular!</p>
-              <p>Zen Level: 3</p>
-              <p>Due Date: N/A</p>
-              <p>Completed: N/A</p>
-              <p>Priority: 1</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <h2>Other users</h2>
-        </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png" height="40" alt="" />
+      </a>
     </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">
+              <form>
+          			<div class="form-group">
+          				<label>Email</label>
+          				<input type="text" class="form-control" >
+          			</div>
+          			<div class="form-group">
+          				<label>Password</label>
+          				<input type="password" class="form-control" >
+          			</div>
+              </form>
+            </a></li>
+          </ul>
+        </li>
+
+        <li ><a href="#/login">Login</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 text-center">
+      <h1 class="my-goals-header">My Goals</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid no-side-pad">
+  <div class="row">
+    <div class="col-md-3 col-sm-3">
+      <div class="side-bar">
+        <div class="side-bar-content hidden-xs content-links">
+          <h3>Goal News</h3>
+          <h3>My Goals</h3>
+          <h3>Add Goal</h3>
+          <h3>Settings</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 col-sm-6">
+      <div class="jumbotron user-profile">
+        <h2>Jake Shield</h2>
+        <p>Goals: Practice Angular!</p>
+        <p>Zen Level: 3</p>
+        <p>Due Date: N/A</p>
+        <p>Completed: N/A</p>
+        <p>Priority: 1</p>
+      </div>
+    </div>
+    <div class="col-md-2 col-sm-3">
+      <div class="side-bar">
+        <div class="side-bar-content">
+          <ul class="lineItUp">
+            <li><img height="40" src="http://sherrod.etsu.edu/sites/default/files/images/Female_User_Icon_clip_art_hight.png"/></li>
+            <li>Linda</li>
+          </ul>
+          <ul class="lineItUp">
+            <li><img height="40" src="https://linuxreference.files.wordpress.com/2010/11/linux_icon.gif"/></li>
+            <li>James</li>
+          </ul>
+        </div>
+        <div class="side-bar-content visible-xs content-links">
+          <h3>Goal News</h3>
+          <h3>My Goals</h3>
+          <h3>Add Goal</h3>
+          <h3>Settings</h3>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
