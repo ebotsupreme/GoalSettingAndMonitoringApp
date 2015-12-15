@@ -6,26 +6,7 @@
 
     function goalRoutes($routeProvider, $locationProvider){
       $routeProvider
-      // login page
-        .when('/login', {
-          templateUrl : 'partials/login.html',
-          controller : 'mainController',
-          controllerAs: 'login'
-        })
-      // show all users, TBD may get rid of thie route
-      .when('/users', {
-        templateUrl: 'partials/home.html',
-        controller: 'userController',
-        controllerAs: 'user'
-      })
-      // sign up page
-     //   .when('/signup', {
-     //     templateUrl : 'partials/sign-up.html',
-     //     controller : 'userController',
-     //     controllerAs : 'userCtrlPlaceholder'
-     //   })
-        // home page w/o logging in
-        .when('/home', {
+      .when('/home', {
           templateUrl : 'partials/home.html',
           controller : 'userController',
           controllerAs : 'user'
@@ -59,6 +40,26 @@
           controller : 'placeholderController',
           controllerAs : 'placeholder'
         })
+      // login page
+        .when('/login', {
+          templateUrl : 'partials/login.html',
+          controller : 'mainController',
+          controllerAs: 'login'
+        })
+      // show all users, TBD may get rid of thie route
+      .when('/users', {
+        templateUrl: 'partials/home.html',
+        controller: 'userController',
+        controllerAs: 'user'
+      })
+      // sign up page
+     //   .when('/signup', {
+     //     templateUrl : 'partials/sign-up.html',
+     //     controller : 'userController',
+     //     controllerAs : 'userCtrlPlaceholder'
+     //   })
+        // home page w/o logging in
+        
         .otherwise({
           redirectTo: '/home'
         })

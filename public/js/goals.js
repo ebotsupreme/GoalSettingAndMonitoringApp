@@ -8,6 +8,7 @@
 
 	function reverse() {
 		return function(items) {
+			if (items == undefined) return null;
 			return items.slice().reverse();
 		};
 	}

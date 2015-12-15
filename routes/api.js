@@ -156,7 +156,6 @@ apiRouter.route('/users')
 			// return a message
 			res.json({ message: 'User created!' });
 		});
-
 	})
 
 	// get all the users (accessed at GET http://localhost:8080/api/users)
@@ -215,6 +214,7 @@ apiRouter.route('/users/:user_id')
 	});
 
 // api endpoint to get user information
+// this is called from authService.js authFactory.getUser
 apiRouter.get('/me', function(req, res) {
 	res.send(req.decoded);
 });
