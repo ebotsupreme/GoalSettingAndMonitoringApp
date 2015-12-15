@@ -1,35 +1,104 @@
-#goal-header{
-  text-align: center;
+/*brand colors - orange #e04700 - blue #00aee0 */
+
+/*general*/
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+.lineItUp li {
+  display: inline;
+}
+.lineItUpBlock li {
+  display: inline-block;
+}
+h1 {
+  font-size: 36px;
+}
+.container .jumbotron, .container-fluid .jumbotron {
+  border-radius: 0;
+}
+.btn {
+  color: #fff;
+  background: #e04700;
+  border: 1px solid #e04700;
+  transition: all ease .3s;
+}
+.btn:hover {
+  transform: scaleY( 1.1 );
+  -webkit-box-shadow: 0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  color: #e04700;
+  background: #fff;
+  border: 1px solid #e04700;
+}
+.no-side-pad {
+  padding: 0;
 }
 
-#input-bar-half{
+/*nav*/
+
+nav {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00aee0+0,e04700+100 */
+  background: #00aee0; /* Old browsers */
+  background: -moz-linear-gradient(left,  #00aee0 0%, #e04700 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #00aee0 0%,#e04700 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #00aee0 0%,#e04700 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00aee0', endColorstr='#e04700',GradientType=1 ); /* IE6-9 */
+}
+.navbar-brand {
+  padding-top: 5px;
+}
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+/*profile*/
+
+.my-goals-header{
+  margin: 0 0 15px 0;
+}
+.side-bar{
+  margin-bottom: 30px;
+}
+.side-bar-content {
+  padding: 15px;
+  border-top: 2px solid #00aee0;
+  border-bottom: 2px solid #00aee0;
+  margin-bottom: 30px;
+}
+.side-bar-content ul li {
+  padding-bottom: 15px;
+}
+.side-bar-content ul {
+  margin: 10px auto;
+}
+.user-profile{
+  background-color: #e04700;
+  color: #fff;
+}
+.content-links h3{
+  margin: 0;
+  cursor: pointer;
+  padding: 10px 0;
+  border-bottom: 1px solid grey;
+  transition: all ease .3s;
+}
+.content-links h3:hover {
+  border-bottom: 1px solid #e04700;
+}
+
+/*login / sign up*/
+
+.input-bar-half{
   width: 50%;
 }
-
-#completed-placement{
+.completed-placement{
   margin: 2px 18px 10px;
 }
-
-#checkbox-border{
+.checkbox-border{
   border: 0px;
 }
-
-#add-a-goal-header{
-  text-align: center;
-}
-
-#side-bar{
-  margin: 118px 32px 3px 2px;
-  height: 222px;
-  border: 2px solid black;
-  width: 200px;
-}
-
-#side-bar-content{
-  margin: 14px 12px 20px;
-}
-
-#my-goals-header{
-  font-size: 100px;
+.add-a-goal-header{
   text-align: center;
 }

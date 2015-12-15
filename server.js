@@ -31,7 +31,7 @@ app.get('/', function(req,res){
 
 app.use('/api', apiRoutes)
 
+
 app.listen(port, function(){
 	console.log('Server Listening on port ' + port)
 })
-
