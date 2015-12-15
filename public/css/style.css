@@ -1,0 +1,35 @@
+#goal-header{
+  text-align: center;
+}
+
+#input-bar-half{
+  width: 50%;
+}
+
+#completed-placement{
+  margin: 2px 18px 10px;
+}
+
+#checkbox-border{
+  border: 0px;
+}
+
+#add-a-goal-header{
+  text-align: center;
+}
+
+#side-bar{
+  margin: 118px 32px 3px 2px;
+  height: 222px;
+  border: 2px solid black;
+  width: 200px;
+}
+
+#side-bar-content{
+  margin: 14px 12px 20px;
+}
+
+#my-goals-header{
+  font-size: 100px;
+  text-align: center;
+}

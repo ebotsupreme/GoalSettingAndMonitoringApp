@@ -339,7 +339,6 @@ apiRouter.route('/goals/:id')
 		})
 	})
 
-
 //TBD probably won't need
 /* db.users.update({"_id": ObjectId("566f35206eb17518050f7ebe")}, {$set: {"goals": []}})
 apiRouter.get('/users/:user_id/destroy-all-goals', function(req,res){
