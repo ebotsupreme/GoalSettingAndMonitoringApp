@@ -260,7 +260,7 @@ apiRouter.route('/goals/users/:user_id')
       "reminder": false,
       "completed": false,
       "priority": 10,
-      "user_id": "566f35206eb17518050f7ebe"
+      "user_id": "566f35206eb17518050f7ebe"  ***Update to userinquestion***
     }
 */
 		newGoal.save(function(err) {

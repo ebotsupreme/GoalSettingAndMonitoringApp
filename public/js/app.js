@@ -1,4 +1,4 @@
-angular.module('goalsApp', ['ngAnimate', 'app.routes', 'mainCtrl', 'userCtrl', 
+angular.module('goalsApp', ['ngAnimate', 'app.routes', 'mainCtrl', 'userCtrl',
 	'userService', 'authService', 'goalsCtrl', 'goals', 'goalsFactory'])
 
 // application configuration to integrate token into requests
