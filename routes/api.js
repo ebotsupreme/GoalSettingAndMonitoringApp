@@ -2,84 +2,21 @@ var
 	express 	= require('express'),
 	apiRouter  	= express.Router(),
 	mongoose 	= require('mongoose'),
-	Goal 		= require('../models/Goal.js'),
+	Goal 		= require('../models/goal.js'),
 	User 		= require('../models/user.js'),
 	jwt        	= require('jsonwebtoken'),
 	superSecret	= 'frijoles'
 
 apiRouter.get('/', function(req,res){
 	res.json({message: "Api routes are working."})
-})
+});
 
-//Read all and Create one (Also use this for cycling through all users)
-
-apiRouter.route('/users/:user_id/goals')
-	.get(function(req,res){
-		Goal.find({}, function(err, goals){ //TBD change to find for given user
-			res.json(goals)
-		})
-	})
-	//TBD this might be a different route
-	.post(function(req,res){  //TBD how to post sub-goals? 
-		                      //(need to pass in parent goal id that it gets pushed into)
-		var newGoal = new Goal
-		newGoal.goal_or_task = req.body.goal_or_task
-		newGoal.date_created = req.body.date_created
-		newGoal.zen_level = req.body.zen_level
-		newGoal.reminder = req.body.reminder
-		newGoal.optional_due_date = req.body.optional_due_date
-		newGoal.completed = req.body.completed
-		newGoal.priority = req.body.priority
-
-		//TBD attach to given user, then save user
-
-		newGoal.save(function(err, goal){
-			if(err) throw err
-			res.json({message: "Goal Saved!", goal: goal})
-		})
-	})
-
-//Read one, Update one and Delete one
-//TBD is this also for updating the status?
-// and what about chaining through one goal's sub goals?
-//apiRouter.route('/users/:user_id/goals/:id')  //TBD don't need user here, correct?
-apiRouter.route('/goals/:id')
-	.get(function(req,res){
-		Goal.findById(req.params.id, function(err,goal){
-			if(err) throw err
-			res.json(goal)
-		})
-	})
-	.patch(function(req,res){
-		Goal.findOneAndUpdate({_id: req.params.id}, req.body, function(err,goal){
-			if(err) throw err
-			Goal.findById(req.params.id, function(err,updatedGoal){
-				res.json(updatedGoal)
-			})
-		})
-	})
-	.delete(function(req,res){
-		Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
-			if(err) throw err
-			res.json({message:"goal deleted!"})
-		})
-	})
-
-apiRouter.get('/users/:user_id/destroy-all-goals', function(req,res){
-	Goal.remove({}, function(err){
-		if(err) throw err
-		res.json({message: 'All user\'s goals destroyed!'})
-	})
-})
-
-// -----------------------------------api routes for a user -------------------------------------------------------------------------
+// ---------------------------api routes to create a user ---------------------------------------------
 // route to generate sample user
 // ***Take out after dev & test
 apiRouter.post('/sample', function(req, res) {
-
 	// look for the user named test
 	User.findOne({ 'username': 'test' }, function(err, user) {
-
 		// if there is no test user, create one
 		if (!user) {
 			var sampleUser = new User();
@@ -88,27 +25,32 @@ apiRouter.post('/sample', function(req, res) {
 			sampleUser.username = 'test';
 			sampleUser.password = 'test';
 
-			sampleUser.save();
+			sampleUser.save(function(err) {
+				if (err) res.send(err);
+
+			});
 		} else {
 			console.log(user);
 
 			// if there is a test user, update the password
 			user.password = 'test';
-			user.save();
+			user.save(function(err) {
+				if (err) res.send(err);
+
+				// return a message
+				res.json({ message: 'Test User updated!' });
+			});
 		}
 		res.send('done')
 	});
-
 });
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 apiRouter.post('/authenticate', function(req, res) {
-
 	// find the user
 	User.findOne({
 		username: req.body.username
 	}).select('name username password').exec(function(err, user) {
-
 		if (err) throw err;
 
 		// no user with that username was found
@@ -118,7 +60,6 @@ apiRouter.post('/authenticate', function(req, res) {
 				message: 'Authentication failed. User not found.'
 			});
 		} else if (user) {
-
 			// check if password matches
 			var validPassword = user.comparePassword(req.body.password);
 			if (!validPassword) {
@@ -127,12 +68,12 @@ apiRouter.post('/authenticate', function(req, res) {
 					message: 'Authentication failed. Wrong password.'
 				});
 			} else {
-
 				// if user is found and password is right
 				// create a token
 				var token = jwt.sign({
 					name: user.name,
-					username: user.username
+					username: user.username,
+					user_id: user._id    //TBD can get this out of local storage
 				}, superSecret, {
 					expiresInMinutes: 1440 // expires in 24 hours
 				});
@@ -144,14 +85,13 @@ apiRouter.post('/authenticate', function(req, res) {
 					token: token
 				});
 			}
-
 		}
-
 	});
 });
 
+// ---------------------------api routes to login a user ---------------------------------------------
 ////**All routes above this do not require a token to get access**
-//TBD all of the goals (or the ones that require user login) above should be moved below this
+// all of the goals (or the ones that require user login) above should be moved below this
 // route middleware to verify a token
 apiRouter.use(function(req, res, next) {
 	// do logging
@@ -162,7 +102,6 @@ apiRouter.use(function(req, res, next) {
 
 	// decode token
 	if (token) {
-
 		// verifies secret and checks exp
 		jwt.verify(token, superSecret, function(err, decoded) {
 
@@ -178,16 +117,13 @@ apiRouter.use(function(req, res, next) {
 				next(); // make sure we go to the next routes and don't stop here
 			}
 		});
-
 	} else {
-
 		// if there is no token
 		// return an HTTP response of 403 (access forbidden) and an error message
 		res.status(403).send({
 			success: false,
 			message: 'No token provided.'
 		});
-
 	}
 });
 
@@ -200,7 +136,6 @@ apiRouter.get('/', function(req, res) {
 // on routes that end in /users
 // ----------------------------------------------------
 apiRouter.route('/users')
-
 	// create a user (accessed at POST http://localhost:8080/users)
 	.post(function(req, res) {
 
@@ -223,7 +158,6 @@ apiRouter.route('/users')
 		});
 
 	})
-
 	// get all the users (accessed at GET http://localhost:8080/api/users)
 	.get(function(req, res) {
 
@@ -238,7 +172,6 @@ apiRouter.route('/users')
 // on routes that end in /users/:user_id
 // ----------------------------------------------------
 apiRouter.route('/users/:user_id')
-
 	// get the user with that id
 	.get(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
@@ -252,7 +185,6 @@ apiRouter.route('/users/:user_id')
 	// update the user with this id
 	.put(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
-
 			if (err) res.send(err);
 
 			// set the new user information if it exists in the request
@@ -267,7 +199,6 @@ apiRouter.route('/users/:user_id')
 				// return a message
 				res.json({ message: 'User updated!' });
 			});
-
 		});
 	})
 
@@ -287,5 +218,138 @@ apiRouter.get('/me', function(req, res) {
 	res.send(req.decoded);
 });
 
+// ----------------------------------------------------------------------------------------------------
+// ---------------------------api routes for a users goals --------------------------------------------
+//Read all and Create one (Also use this for cycling through all users)
+//TBD In Angular get user id from token
+apiRouter.route('/users/:user_id/goals')
+	.get(function(req,res){
+		// find goals for given user
+		//User.findById(req.params.user_id, function(err, user) {
+		//	if (err) res.send(err);
+
+		//  res.json(user.goals);  		
+		//});
+			User.findOne({ _id: req.params.user_id})
+			  .populate('goals')
+			  .exec(function (err, user) {
+          if (err) res.send(err);
+          console.log('Populated user with goals', user);
+          res.json(user.goals); 
+        })
+	})
+	.post(function(req,res){ 
+		// post a new goal for the user
+		var newGoal = new Goal 
+		newGoal.parent_categories_heirachy = req.body.parent_categories_heirachy
+		newGoal.goal_or_task = req.body.goal_or_task
+		newGoal.date_created = req.body.date_created
+		newGoal.zen_level = req.body.zen_level
+		newGoal.reminder = req.body.reminder
+		newGoal.optional_due_date = req.body.optional_due_date
+		newGoal.completed = req.body.completed
+		newGoal.priority = req.body.priority
+
+		newGoal.user_id = req.params.user_id
+		//To test in postman
+/*	  {
+      "parent_categories_heirachy": "Learn Web/Learn Angular/Write an app",
+      "goal_or_task": "test routes in postman",
+      "zen_level": 2,
+      "reminder": false,
+      "completed": false,
+      "priority": 10,
+      "user_id": "566f35206eb17518050f7ebe"
+    }
+*/
+		newGoal.save(function(err) {
+			if (err) res.send(err)
+			res.json({message: 'Goal record saved!'})
+		});
+
+		// attach to given user, then save user
+		User.findById(req.params.user_id, function(err, user) {
+			if (err) res.send(err);
+      user.goals.push(newGoal); 		
+
+			// save the goal updated user
+			user.save(function(err) {
+				if (err) res.send(err);
+				// return a message
+				//res.json({ message: 'Goal saved in user!' });
+			});
+
+		});
+	})
+
+// ---------------------------api routes for individual goals -----------------------------------------
+//Read one, Update one and Delete one
+
+apiRouter.route('/goals/:id') 
+	.get(function(req,res){ //
+		//Goal.findById(req.params.id, function(err,goal){
+		//	if(err) throw err
+		//	res.json(goal)
+		//})
+		Goal.findOne({ _id: req.params.id })
+      .populate('user_id')
+      .exec(function (err, goal) {
+        if (err) res.send(err);
+        console.log('Populated goal with user %s', goal.user_id.name);
+        res.json(goal)
+      });
+	})
+	.patch(function(req,res){
+		Goal.findOneAndUpdate({_id: req.params.id}, req.body, function(err,goal){
+			if(err) throw err
+			Goal.findById(req.params.id, function(err,updatedGoal){ //to return updated goal
+				res.json(updatedGoal)
+			})
+		})
+	})
+	.delete(function(req,res){
+		//delete from user.goals
+    Goal.findById( req.params.id, function(err, goal) {
+			if (err) res.send(err);
+
+      User.findById(goal.user_id, function(err, user) {
+			  if (err) res.send(err);
+ console.log("found user to delete goal out of, len " + user.goals.length)	
+        for (var i = 0; i < user.goals.length; i++) {
+        	console.log("ids "+user.goals[i] +", "+ req.params.id)
+        	if (user.goals[i] == req.params.id) { //*** not the same so only == ***
+            user.goals.splice(i, 1);
+            console.log("spliced out "+i+" indexed goal")
+            continue;
+          }
+        }
+			  // save the goal deleted user
+			  user.save(function(err) {
+				  if (err) res.send(err);
+				  // return a message
+				  //res.json({ message: 'Goal saved in user!' });
+			  });
+			});
+    });
+
+		//delete from goal collection
+		Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
+			if(err) throw err
+			res.json({message:"goal deleted!"})
+		})
+	})
+
+
+//TBD probably won't need
+/* db.users.update({"_id": ObjectId("566f35206eb17518050f7ebe")}, {$set: {"goals": []}})
+apiRouter.get('/users/:user_id/destroy-all-goals', function(req,res){
+	//TBD remove all goals for given user
+	Goal.remove({}, function(err){
+		if(err) throw err
+		res.json({message: 'All user\'s goals destroyed!'})
+	})
+})
+*/
 
 module.exports = apiRouter
+
