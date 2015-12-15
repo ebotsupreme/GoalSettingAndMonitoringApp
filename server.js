@@ -19,7 +19,7 @@ mongoose.connect('mongodb://goals_app:houfu@ds029595.mongolab.com:29595/goals_ap
 	console.log('Connected to MongoDB')
 })
 
-// app.set('view engine', 'ejs')
+
 
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({extended: true}))
@@ -32,7 +32,7 @@ app.get('/', function(req,res){
 	res.sendFile(__dirname + '/public/index.html')
 })
 
-//app.use('/api', apiRoutes)
+app.use('/api', apiRoutes)
 
 
 app.listen(port, function(){
