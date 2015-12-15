@@ -1,7 +1,6 @@
 var
 	express     = require('express'),
 	app         = express(),
-	ejs         = require('ejs'),
 	logger      = require('morgan'),
 	path        = require('path'),
 	mongoose    = require('mongoose'),
@@ -18,8 +17,6 @@ mongoose.connect('mongodb://goals_app:houfu@ds029595.mongolab.com:29595/goals_ap
 	if(err) throw err
 	console.log('Connected to MongoDB')
 })
-
-
 
 app.use( bodyParser.json() )
 app.use(bodyParser.urlencoded({extended: true}))

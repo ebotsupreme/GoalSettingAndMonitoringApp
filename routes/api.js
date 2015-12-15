@@ -222,7 +222,7 @@ apiRouter.get('/me', function(req, res) {
 // ---------------------------api routes for a users goals --------------------------------------------
 //Read all and Create one (Also use this for cycling through all users)
 //TBD In Angular get user id from token
-apiRouter.route('/users/:user_id/goals')
+apiRouter.route('/goals/users/:user_id')
 	.get(function(req,res){
 		// find goals for given user
 		//User.findById(req.params.user_id, function(err, user) {
@@ -338,7 +338,6 @@ apiRouter.route('/goals/:id')
 			res.json({message:"goal deleted!"})
 		})
 	})
-
 
 //TBD probably won't need
 /* db.users.update({"_id": ObjectId("566f35206eb17518050f7ebe")}, {$set: {"goals": []}})
