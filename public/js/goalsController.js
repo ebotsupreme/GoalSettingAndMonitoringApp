@@ -49,6 +49,8 @@
 		var self = this
 		self.name = 'Goal Detail'
 		self.api = goals  //goals factory
+
+		// the goal being processed here
 		self.goal = null
 
 		// default boolean value, which we can toggle true/false for showing/hiding the goal edit form
@@ -68,7 +70,7 @@
 		// show the goal details without the edit form
 		self.updateGoal = function(goalId, make, model, year){
 			var data = {make: make, model: model, year: year}
-			self.api.updateGoal(goalId,data).success(function(response){
+			self.api.updateGoal(goalId, data).success(function(response){
 				console.log(response)
 				self.goal = response
 				self.editing = false

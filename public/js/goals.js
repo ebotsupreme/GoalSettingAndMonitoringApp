@@ -15,7 +15,7 @@
 	function goalForm(){
 		var directive = {
 			restrict: 'E',
-			templateUrl: '/partials/goal-form.html'
+			templateUrl: '/partials/add-update-goal.html'
 		}
 		return directive
 	}
