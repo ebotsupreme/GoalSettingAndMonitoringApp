@@ -102,3 +102,26 @@ nav {
 .add-a-goal-header{
   text-align: center;
 }
+
+/*goal monitor and form*/
+.btn-monitor{
+  transform: scaleY( 1.1 );
+  -webkit-box-shadow: 0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         0px 6px 5px rgba( 0, 0, 0, 0.5);;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+  color: #e04700;
+  background: #fff;
+  border: 1px solid #e04700;
+  width: 130px;
+}
+.user-monitor{
+  background-color: #e04700;
+  color: #fff;
+}
+.input-width{
+  width: 130px;
+}
+
+.user-monitor-input{
+  color:#e04700
+}
