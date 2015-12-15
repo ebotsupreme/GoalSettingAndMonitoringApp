@@ -43,9 +43,21 @@
           controllerAs : 'goalsCtrl'
         })
         .when('/goals/:goalId', {
-        templateUrl: 'partials/add-updategoal.html',
+        templateUrl: 'partials/add-update-goal.html',
         controller: 'goalDetailController',
         controllerAs: 'goalDetailCtrl'
+        })
+        // goal monitor form
+        .when('/goalmonitorform', {
+          templateUrl : 'partials/goal-monitor-form.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
+        })
+        // goal monitor
+        .when('/goalmonitor', {
+          templateUrl : 'partials/goal-monitor.html',
+          controller : 'placeholderController',
+          controllerAs : 'placeholder'
         })
         .otherwise({
           redirectTo: '/home'
