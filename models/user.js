@@ -5,9 +5,9 @@ var bcrypt 	  = require('bcrypt-nodejs');
 // user schema
 var UserSchema   = new Schema({
   name: String,
-	username: { type: String, required: true, index: { unique: true }},
-	password: { type: String, required: true, select: false },
-	goals: [{type: Schema.Types.ObjectId, ref: 'Goal'}]
+  username: { type: String, required: true, index: { unique: true }},
+  password: { type: String, required: true, select: false },
+  goals: [{type: Schema.Types.ObjectId, ref: 'Goal'}]
     //TBD later friends and collaboration (not MVP)
 });
 

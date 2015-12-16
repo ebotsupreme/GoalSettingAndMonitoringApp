@@ -3,35 +3,36 @@
     <div class="row">
         <div class="col-sm-8">
             <h1 id="goal-header">Goals</h1>
-          <a ng-repeat="user in user.users | reverse" href="#/goals/users/{{ user._id }}" class="list-group-item">
-            <div class="jumbotron">
+          <div ng-repeat="user in userCtrl.users | reverse" class="jumbotron">
+         <!--   <div class="jumbotron">
               <h2>Jake Shield</h2>
               <p>Goals: Practice Angular!</p>
               <p>Zen Level: 1</p>
               <p>Due Date: N/A</p>
               <p>Completed: N/A</p>
               <p>Priority: 1</p>
-            </div>
+            </div> -->
 
               <h3 class="list-group-item-heading">{{ user.name }}</h3>
-              <a ng-repeat="goal in user.users.goals | reverse" href="#/goals/{{ goal._id }}" class="list-group-item">
+              <div ng-repeat="goal in user.goals| reverse" class="list-group-item">
                 <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
                 <h4 class="list-group-item-text">Goal: {{ goal.goal_or_task }}</h4>
                 <p class="list-group-item-text">Priority: {{ goal.priority }}</p>
-                <p class="list-group-item-text">Zen Level: {{ goal.zen_level }} insert level explanation here</p>
+                <p class="list-group-item-text">Zen Level: {{ goal.zen_level }} 
+                <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
                 <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
                 <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
-              </a>
-
-            <div class="jumbotron">
+              </div>
+            
+        <!--    <div class="jumbotron">
               <h2>Geoffrey Lannister</h2>
               <p>Goals: Run the LA Marathon!</p>
               <p>Zen Level: 3</p>
               <p>Due Date: 3/12/16</p>
               <p>Completed: N/A</p>
-              <p>Priority: 3</p>
+              <p>Priority: 3</p>  -->
             </div>
-          </a>
+          </div>
         </div>
 
         <!-- second column -->

@@ -16,7 +16,7 @@
         .when('/home', {
           templateUrl : 'partials/home.html',
           controller : 'userController',
-          controllerAs : 'user'
+          controllerAs : 'userCtrl'
         })
       // login page
         .when('/login', {
@@ -24,42 +24,37 @@
           controller : 'mainController',
           controllerAs: 'login'
         })
-      // show all users, TBD may get rid of thie route
+      // show all users
       .when('/users', {
         templateUrl: 'partials/home.html',
         controller: 'userController',
         controllerAs: 'user'
       })
-
         // profile page when logged in
         .when('/profile', {
           templateUrl : 'partials/profile.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalController',
+          controllerAs : 'goalCtrl'
         })
-        // get route
-        .when('/goal', {
-          templateUrl : 'partials/goal-monitor.html',
-          controller : 'goalsController',
-          controllerAs : 'goalsCtrl'
-        })
-        .when('/goals/:goalId', {
+        .when('/addgoal', {
         templateUrl: 'partials/add-update-goal.html',
         controller: 'goalDetailController',
         controllerAs: 'goalDetailCtrl'
         })
         // goal monitor form
-        .when('/goalmonitorform', {
+        .when('/monitor', {
           templateUrl : 'partials/goal-monitor-form.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalDetailController',
+          controllerAs : 'goalDetailCtrl'
         })
         // goal monitor
-        .when('/goalmonitor', {
+        .when('/display', {
           templateUrl : 'partials/goal-monitor.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalDetailController',
+          controllerAs : 'goalDetailCtrl'
         })
+
+        // home page w/o logging in
         .otherwise({
           redirectTo: '/home'
         })
