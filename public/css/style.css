@@ -87,6 +87,14 @@ nav {
 .content-links h3:hover {
   border-bottom: 1px solid #e04700;
 }
+.goal-content-border{
+  border: 1px solid #00aee0;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+.profile-user-name{
+  
+}
 
 /*login / sign up*/
 
