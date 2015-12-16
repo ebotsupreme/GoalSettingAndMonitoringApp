@@ -21,14 +21,8 @@
 
 
     <div class="col-md-7 col-sm-6">
-      <div class="jumbotron user-monitor" ng-controller="userController as user">
-        <h2>{{user.name}}</h2>
-    <!--    <p>Goals: Practice Angular!</p>
-        <p>Zen Level: 1</p>
-        <p>Due Date: N/A</p>
-        <p>Completed: N/A</p>
-        <p>Priority: 1</p>  -->
-        <div ng-repeat="goal in user.goals | reverse" class="list-group-item">
+        <h2>{{main.user.name}}</h2>
+        <div ng-repeat="goal in main.user.goals | reverse" class="jumbotron user-monitor">
           <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
           <h4 class="list-group-item-text">Goal: {{ goal.goal_or_task }}</h4>
           <p class="list-group-item-text">Priority: {{ goal.priority }}</p>
@@ -37,7 +31,7 @@
           <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
           <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
       
-          <form g-submit="goalDetailCtrl.updateStatus(goal)">
+          <form ng-submit="goalDetailCtrl.updateStatus(goal)">
             <div class="form-group">
               <label>Hours devoted since last monitoring</label>
               <input type="number" class="form-control input-width" placeholder="Hours:" ng-model="goalDetailCtrl.newMon.hours_devoted">
@@ -54,10 +48,9 @@
               <label>Comment</label>
               <input type="text" class="form-control" placeholder="Comment:" ng-model="goalDetailCtrl.newMon.comment">
             </div>
+          <button type="submit" class="btn-monitor btn-block btn-primary">Submit</button>
           </form>
-          <button type="submit" class="btn-monitor btn-block btn-primary"> Submit</button>
         </div>
-      </div>
     </div>
 
     <div class="col-md-2 col-sm-3">

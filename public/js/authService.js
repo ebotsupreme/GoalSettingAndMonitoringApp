@@ -29,6 +29,7 @@
       else
         return false
     }
+
     authFactory.getUser = function(){
       if(authToken.getToken())
         return $http.get('/api/me')
@@ -38,6 +39,7 @@
 
     return authFactory
   }
+  
   function authInterceptor($q, authToken, $location){
     var authIntercept = {}
 

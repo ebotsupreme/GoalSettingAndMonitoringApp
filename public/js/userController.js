@@ -9,6 +9,8 @@ angular.module('userCtrl', ['userService'])
 	// set a processing variable to show loading things
 	vm.processing = true;
 
+	vm.users = []
+
 	// grab all the users at page load
 	User.all()
 		.success(function(data) {
@@ -19,6 +21,16 @@ angular.module('userCtrl', ['userService'])
 			// bind the users that come back to vm.users
 			vm.users = data;
 		});
+
+    vm.getUser = function(id) {
+    	console.log(vm.users)
+      for (var i=0; i<vm.users.length; i++) {
+      	console.log("in getUser, id = "+id)
+      	console.log(vm.users[i]._id)
+      	if (vm.users[i]._id === id) return vm.users[i]
+      }
+    }
+
 
 	// function to delete a user
 	vm.deleteUser = function(id) {
@@ -37,29 +49,6 @@ angular.module('userCtrl', ['userService'])
 					});
 			});
 	};
-
-	// vm.submitNewUser = function(){
-	// 	console.log("submit new user =====", vm.newUser);
-	// 	User.create(vm.newUser)
-	// 		.success(function(data) {
-	// 			vm.processing = false;
-	// 			vm.newUser = {};
-	// 			vm.message = data.message;
-	//
-	// 			User.all()
-	// 				.success(function(data) {
-	//
-	// 					// when all the users come back, remove the processing variable
-	// 					vm.processing = false;
-	//
-	// 					// bind the users that come back to vm.users
-	// 					vm.users = data;
-	// 				});
-	// 		});
-	// }
-
-
-
 })
 
 // controller applied to user creation page
@@ -93,18 +82,6 @@ angular.module('userCtrl', ['userService'])
 			});
 
 	};
-
-	// vm.makeNewUser = function(){
-	// 	console.log('====new user===');
-	// 	vm.processing = true;
-	// 	User.create(vm.userData)
-	// 		.success(function(data) {
-	// 			vm.processing = false;
-	// 			vm.userData = {};
-	// 			vm.message = data.message;
-	// 		});
-	// };
-
 
 })
 

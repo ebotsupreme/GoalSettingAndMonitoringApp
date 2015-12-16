@@ -25,8 +25,8 @@
 			return $http.post(goalsUrl + '/users/' + userId, data)
 		}
 
-		goals.updateGoal = function(goalId, data) {
-			return $http.patch(goalsUrl + '/' + goalId, data)
+		goals.updateGoal = function(goal) {
+			return $http.patch(goalsUrl + '/' + goal._id, goal)
 		}
 
 		goals.removeGoal = function(goalId) {

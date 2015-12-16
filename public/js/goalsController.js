@@ -1,4 +1,4 @@
-//goalController.js
+//goalsController.js
 (function(){
 
 	// add 2 controllers
@@ -62,8 +62,6 @@
 				$window.document.querySelectorAll('#new-goal-form input')[0].focus()
 			})
 		}
-
-
 	}
 
 	function goalDetailController(goals,$routeParams,$location){
@@ -112,7 +110,7 @@
         self.newMon = {}
 
 		self.updateStatus = function(goal) {
-			console.log("In updateStatus, goal = "); console.log(goal)
+		
 			//self.api.show(goalId).success(function(response){ 
 			//	self.goal = response
 			//})
@@ -144,7 +142,7 @@
 		       }
 			}
 
-			self.api.updateGoal(goalId, goal).success(function(response){
+			self.api.updateGoal(goal).success(function(response){
 				console.log(response)
 				self.goal = response
 				self.editing = false
