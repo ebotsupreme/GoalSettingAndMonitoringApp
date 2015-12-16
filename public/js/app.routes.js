@@ -6,6 +6,18 @@
 
     function goalRoutes($routeProvider, $locationProvider){
       $routeProvider
+      // sign up page
+       .when('/signup', {
+         templateUrl : 'partials/sign-up.html',
+         controller : 'userCreateController',
+         controllerAs : 'userCreateCtrl'
+       })
+        // home page w/o logging in
+        .when('/home', {
+          templateUrl : 'partials/home.html',
+          controller : 'userController',
+          controllerAs : 'user'
+        })
       // login page
         .when('/login', {
           templateUrl : 'partials/login.html',
@@ -18,18 +30,7 @@
         controller: 'userController',
         controllerAs: 'user'
       })
-      // sign up page
-     //   .when('/signup', {
-     //     templateUrl : 'partials/sign-up.html',
-     //     controller : 'userController',
-     //     controllerAs : 'userCtrlPlaceholder'
-     //   })
-        // home page w/o logging in
-        .when('/home', {
-          templateUrl : 'partials/home.html',
-          controller : 'userController',
-          controllerAs : 'user'
-        })
+
         // profile page when logged in
         .when('/profile', {
           templateUrl : 'partials/profile.html',

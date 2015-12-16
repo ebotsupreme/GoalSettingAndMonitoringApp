@@ -13,7 +13,6 @@
               <p>Priority: 1</p>
             </div>
 
-
               <h3 class="list-group-item-heading">{{ user.name }}</h3>
               <a ng-repeat="goal in user.users.goals | reverse" href="#/goals/{{ goal._id }}" class="list-group-item">
                 <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
@@ -35,53 +34,32 @@
           </a>
         </div>
 
-
-
         <!-- second column -->
         <div class="col-sm-4">
             <h1>Sign Up!</h1>
-            <div class="row col-md-6 col-md-offset-3">
-
+            <a type="button" class="btn btn-block btn-primary" href="/#/signup">
+              <span>Sign Up!</span>
+              <span class="spinner"></span>
+            </a>
+            <!-- <div class="row col-md-6 col-md-offset-3">
             	<div class="jumbotron">
-
-            		<form >
-
+            		<form>
             			<div class="form-group">
-            				<label>First Name</label>
-            				<input type="text" class="form-control" >
+            				<label>Name</label>
+            				<input type="text" class="form-control" ng-model="user.newUser.name">
             			</div>
-
             			<div class="form-group">
-            				<label>Last Name</label>
-            				<input type="text" class="form-control" >
+            				<label>User Name</label>
+            				<input type="text" class="form-control" ng-model="user.newUser.username">
             			</div>
-
-            			<div class="form-group">
-            				<label>Email</label>
-            				<input type="text" class="form-control" >
-            			</div>
-
             			<div class="form-group">
             				<label>Password</label>
-            				<input type="password" class="form-control" >
+            				<input type="password" class="form-control" ng-model="user.newUser.password" >
             			</div>
-
-            			<div class="form-group">
-            				<label>Confirm Password</label>
-            				<input type="password" class="form-control" >
-            			</div>
-
-            			<button type="submit" class="btn btn-block btn-primary">
-            				<span>Sign Up!</span>
-            				<span class="spinner"></span>
-            			</button>
 
             		</form>
             	</div>
-
-            </div>
-
+            </div> -->
         </div>
-
     </div>
 </div>

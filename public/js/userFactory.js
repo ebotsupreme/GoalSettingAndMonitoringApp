@@ -18,6 +18,7 @@ angular.module('userService', [])
 
 	// create a user
 	userFactory.create = function(userData) {
+		console.log('factory for user create=======');
 		return $http.post('/api/users/', userData);
 	};
 
@@ -34,4 +35,3 @@ angular.module('userService', [])
 	// return our entire userFactory object
 	return userFactory;
 });
-
