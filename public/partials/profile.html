@@ -11,10 +11,8 @@
       <div class="col-md-3 col-sm-3">
         <div class="side-bar">
           <div class="side-bar-content hidden-xs content-links">
-            <h3>Goal News</h3>
-            <h3>My Goals</h3>
-            <h3>Add Goal</h3>
-            <h3>Settings</h3>
+            <h3>Monitor Goals</h3>
+            <h3>Add / Update Goal</h3>
           </div>
         </div>
       </div>
@@ -22,7 +20,6 @@
         <div class="jumbotron user-profile">
           <div class="list-inline">
           <h2 class="profile-user-name">{{main.user.name}}</h2>
-          <p class="profile-user-monitor-dates">Monitor date links</p>
           </div>
           <div ng-repeat="goal in main.user.goals | reverse" class="goal-content-border">
             <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
@@ -32,6 +29,10 @@
             <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
             <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
             <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
+            <div>
+              <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored: <a href="#">{{monitor.m_date}}</a></p>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-2 col-sm-3">
