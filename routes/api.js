@@ -161,13 +161,16 @@ apiRouter.route('/users')
 	// get all the users (accessed at GET http://localhost:8080/api/users)
 	// TBD might be able to get rid of this one
 	.get(function(req, res) {
-		User.find({}, function(err, users) {
+		User.find({})
+			.populate('goals')
+			.exec(function(err, users) {
 			if (err) res.send(err);
 
 			// return the users w/o goals, the with goals version is another route below
 			res.json(users);
-		});
-	});
+		})
+	})
+
 
 // on routes that end in /users/:user_id
 // ----------------------------------------------------

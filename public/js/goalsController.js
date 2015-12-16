@@ -17,21 +17,39 @@
 		self.name = 'Goal List'
 		self.api = goals  //goals factory
 
-		// for full list of goals from DB
+		// for full list user's of goals from DB
 		self.goals = []
 
 		// for a new goal to POST 
 		self.newGoal = {}
 
-		// get list of goals, and set this controller's 'goals' property to 
-		// the array we get back from our API
-		self.api.list().success(function(response){  //call factory function
-			self.goals = response
-		})
+		//// get list of goals, and set this controller's 'goals' property to 
+		//// the array we get back from our API
+		//self.api.list().success(function(response){  //call factory function
+		//	self.goals = response
+		//})
+
+		self.showGoals = function(user_id){
+	      self.api.list(user_id).success(function(response){  //call factory function
+		  	self.goals = response
+		  })
+		}
 
 		// controller method for adding a new goal, invoked when user hits submit
-		self.addGoal = function(make, model, year){
-			var data = {make: make, model: model, year: year}
+		self.addGoal = function(parent_categories_heirachy, goal_or_task, date_created,
+			zen_level, reminder, optional_due_date, completed, priority) {
+
+			var data = {
+				parent_categories_heirachy: parent_categories_heirachy, 
+				goal_or_task:               goal_or_task, 
+				date_created:               date_created,
+				zen_level:                  zen_level,
+				reminder:                   reminder,
+				optional_due_date:          optional_due_date,
+				completed:                  completed,
+				priority:                   priority
+			}
+
 			// run the goal factory's addGoal method to send the POST request with the data object we just created
 			self.api.addGoal(data).then(function success(response){
 				// when we successfully finish the POST request, take the server's response (the new goal) and add 
@@ -43,6 +61,8 @@
 				$window.document.querySelectorAll('#new-goal-form input')[0].focus()
 			})
 		}
+
+        
 	}
 
 	function goalDetailController(goals,$routeParams,$location){
@@ -68,8 +88,20 @@
 		// update the goal, on successful PATCH, set the goal object to the response from the server,
 		// which updates the front-end, then turn the editing property to false, which toggles back to 
 		// show the goal details without the edit form
-		self.updateGoal = function(goalId, make, model, year){
-			var data = {make: make, model: model, year: year}
+		self.updateGoal = function(goalId, parent_categories_heirachy, goal_or_task, date_created,
+			zen_level, reminder, optional_due_date, completed, priority) {
+
+			var data = {
+				parent_categories_heirachy: parent_categories_heirachy, 
+				goal_or_task:               goal_or_task, 
+				date_created:               date_created,
+				zen_level:                  zen_level,
+				reminder:                   reminder,
+				optional_due_date:          optional_due_date,
+				completed:                  completed,
+				priority:                   priority
+			}
+
 			self.api.updateGoal(goalId, data).success(function(response){
 				console.log(response)
 				self.goal = response

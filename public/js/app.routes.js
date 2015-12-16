@@ -9,7 +9,7 @@
       .when('/home', {
           templateUrl : 'partials/home.html',
           controller : 'userController',
-          controllerAs : 'user'
+          controllerAs : 'userCtrl'
         })
         // profile page when logged in
         .when('/profile', {
@@ -23,22 +23,22 @@
           controller : 'goalsController',
           controllerAs : 'goalsCtrl'
         })
-        .when('/goals/:goalId', {
+        .when('/goals/:goalId/update', {
         templateUrl: 'partials/add-update-goal.html',
         controller: 'goalDetailController',
         controllerAs: 'goalDetailCtrl'
         })
         // goal monitor form
-        .when('/goalmonitorform', {
+        .when('/goals/:goalId/monitor', {
           templateUrl : 'partials/goal-monitor-form.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalDetailController',
+          controllerAs : 'goalDetailCtrl'
         })
         // goal monitor
-        .when('/goalmonitor', {
+        .when('/goals/:goalId', {
           templateUrl : 'partials/goal-monitor.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalDetailController',
+          controllerAs : 'goalDetailCtrl'
         })
       // login page
         .when('/login', {
