@@ -21,8 +21,8 @@
 			return $http.get(goalsUrl + '/' + goalId)
 		}
 
-		goals.addGoal = function(userId, data) {      //TBD this is tied to a user route
-			return $http.post(goalsUrl + '/users/' + userId, data)
+		goals.addGoal = function(userId, goal) {
+			return $http.post(goalsUrl + '/users/' + userId, goal)
 		}
 
 		goals.updateGoal = function(goal) {

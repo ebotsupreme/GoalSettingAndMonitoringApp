@@ -19,7 +19,7 @@
 	function goalForm(){
 		var directive = {
 			restrict: 'E',
-			templateUrl: '/partials/add-update-goal.html'
+			templateUrl: '/partials/add-update-goal-form.html'
 		}
 		return directive
 	}
@@ -32,4 +32,6 @@
 		}
 		return directive
 	}
+
 }());
+
