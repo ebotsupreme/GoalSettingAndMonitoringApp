@@ -33,7 +33,7 @@
         // profile page when logged in
         .when('/profile', {
           templateUrl : 'partials/profile.html',
-          controller : 'goalController',
+          controller : 'goalsController',
           controllerAs : 'goalCtrl'
         })
         .when('/addgoal', {

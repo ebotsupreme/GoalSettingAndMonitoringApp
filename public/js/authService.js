@@ -50,7 +50,7 @@
     }
     authIntercept.responseError = function(response){
       if(response.status == 403)
-        $location.path('/login')
+        $location.path('/home')
 
         return $q.reject(response)
     }
