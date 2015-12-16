@@ -32,7 +32,7 @@ angular.module('mainCtrl', [])
         mainCtrl.processing = false;
 
         if(data.success)
-          $location.path('/users');
+          $location.path('/profile');
         else
           mainCtrl.error = data.message;
       });

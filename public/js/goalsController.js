@@ -84,26 +84,67 @@
 				self.goal = response
 			})
 		}
-		self.showGoal($routeParams.goalId)
+		//self.showGoal($routeParams.goalId)
 
 		// update the goal, on successful PATCH, set the goal object to the response from the server,
 		// which updates the front-end, then turn the editing property to false, which toggles back to 
 		// show the goal details without the edit form
-		self.updateGoal = function(goalId, parent_categories_heirachy, goal_or_task, date_created,
-			zen_level, reminder, optional_due_date, completed, priority) {
+		self.updateGoal = function() {
 
 			var data = {
-				parent_categories_heirachy: parent_categories_heirachy, 
-				goal_or_task:               goal_or_task, 
-				date_created:               date_created,
-				zen_level:                  zen_level,
-				reminder:                   reminder,
-				optional_due_date:          optional_due_date,
-				completed:                  completed,
-				priority:                   priority
+				parent_categories_heirachy: self.parent_categories_heirachy, 
+				goal_or_task:               self.goal_or_task, 
+				date_created:               self.date_created,
+				zen_level:                  self.zen_level,
+				reminder:                   self.reminder,
+				optional_due_date:          self.optional_due_date,
+				completed:                  self.completed,
+				priority:                   self.priority
 			}
 
 			self.api.updateGoal(goalId, data).success(function(response){
+				console.log(response)
+				self.goal = response
+				self.editing = false
+			})
+		}
+
+        self.newMon = {}
+
+		self.updateStatus = function(goal) {
+			console.log("In updateStatus, goal = "); console.log(goal)
+			//self.api.show(goalId).success(function(response){ 
+			//	self.goal = response
+			//})
+
+			//self.newMon = {
+			//	hours_devoted:    self.hours_devoted,
+	        //    quality:          self.quality,
+	        //    percieved_result: self.percieved_result,
+            //    comment:          self.comment
+            //}
+
+            goal.monitoring.push(self.newMon)
+            self.newMon = {} //clear out values for next one
+
+			var data = {
+		//		parent_categories_heirachy: parent_categories_heirachy, 
+		//		goal_or_task:               goal_or_task, 
+		//		date_created:               date_created,
+		//		zen_level:                  zen_level,
+		//		reminder:                   reminder,
+		//		optional_due_date:          optional_due_date,
+		//		completed:                  completed,
+		//		priority:                   priority
+
+		//TBD need to push into this array instead, also what about above values?
+			// -> It might work since it's a patch
+		       monitoring: {
+		       	
+		       }
+			}
+
+			self.api.updateGoal(goalId, goal).success(function(response){
 				console.log(response)
 				self.goal = response
 				self.editing = false
