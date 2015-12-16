@@ -27,7 +27,6 @@ apiRouter.post('/sample', function(req, res) {
 
 			sampleUser.save(function(err) {
 				if (err) res.send(err);
-
 			});
 		} else {
 			console.log(user);

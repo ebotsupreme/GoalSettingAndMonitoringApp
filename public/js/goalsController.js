@@ -38,21 +38,22 @@
 		// controller method for adding a new goal, invoked when user hits submit
 		//self.addGoal = function(parent_categories_heirachy, goal_or_task, date_created,
 		//	zen_level, reminder, optional_due_date, completed, priority) {
-		self.addGoal = function() {
+		self.addGoal = function(user_id) {
 
 			var data = {
 				parent_categories_heirachy: self.parent_categories_heirachy,
 				goal_or_task:               self.goal_or_task,
 				date_created:               self.date_created,
 				zen_level:                  self.zen_level,
-				reminder:                   self.reminder,
+				//reminder:                   self.reminder, not MVP
 				optional_due_date:          self.optional_due_date,
 				completed:                  self.completed,
 				priority:                   self.priority
 			}
 
 			// run the goal factory's addGoal method to send the POST request with the data object we just created
-			self.api.addGoal(data).then(function success(response){
+			self.api.addGoal(user_id, data).then(function success(response){
+				console.log('added a goal!')
 				// when we successfully finish the POST request, take the server's response (the new goal) and add
 				// it to this controller's goal list, which updates the front-end with the new goal
 				self.goals.push(response.data.goal)
@@ -87,59 +88,17 @@
 		// update the goal, on successful PATCH, set the goal object to the response from the server,
 		// which updates the front-end, then turn the editing property to false, which toggles back to
 		// show the goal details without the edit form
-		self.updateGoal = function() {
+		self.updateGoal = function(user_id) {
 
-			var data = {
+			var goal = {
 				parent_categories_heirachy: self.parent_categories_heirachy, 
 				goal_or_task:               self.goal_or_task, 
 				date_created:               self.date_created,
 				zen_level:                  self.zen_level,
-				reminder:                   self.reminder,
+				//reminder:                   self.reminder, not MVP
 				optional_due_date:          self.optional_due_date,
 				completed:                  self.completed,
 				priority:                   self.priority
-			}
-
-			self.api.updateGoal(goalId, data).success(function(response){
-				console.log(response)
-				self.goal = response
-				self.editing = false
-			})
-		}
-
-        self.newMon = {}
-
-		self.updateStatus = function(goal) {
-		
-			//self.api.show(goalId).success(function(response){ 
-			//	self.goal = response
-			//})
-
-			//self.newMon = {
-			//	hours_devoted:    self.hours_devoted,
-	        //    quality:          self.quality,
-	        //    percieved_result: self.percieved_result,
-            //    comment:          self.comment
-            //}
-
-            goal.monitoring.push(self.newMon)
-            self.newMon = {} //clear out values for next one
-
-			var data = {
-		//		parent_categories_heirachy: parent_categories_heirachy, 
-		//		goal_or_task:               goal_or_task, 
-		//		date_created:               date_created,
-		//		zen_level:                  zen_level,
-		//		reminder:                   reminder,
-		//		optional_due_date:          optional_due_date,
-		//		completed:                  completed,
-		//		priority:                   priority
-
-		//TBD need to push into this array instead, also what about above values?
-			// -> It might work since it's a patch
-		       monitoring: {
-		       	
-		       }
 			}
 
 			self.api.updateGoal(goal).success(function(response){
@@ -149,8 +108,20 @@
 			})
 		}
 
-		// delete the goal using this, then afterwards, redirect the user back to /goals 
+        self.newMon = {}
 
+		self.updateStatus = function(goal) {
+            goal.monitoring.push(self.newMon)
+            self.newMon = {} //clear out values for next one
+
+			self.api.updateGoal(goal).success(function(response){
+				console.log(response)
+				self.goal = response
+				self.editing = false
+			})
+		}
+
+		// delete the goal using this, then afterwards, redirect the user back to /goals 
 		self.removeGoal = function(goalId){
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)

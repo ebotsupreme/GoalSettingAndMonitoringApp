@@ -56,9 +56,9 @@
 
         return $q.reject(response)
     }
-
     return authIntercept
   }
+  
   function authToken($window){
     var authTokenFactory = {}
     // get the token out of local storage
@@ -73,7 +73,6 @@
       else
         $window.localStorage.removeItem('token')
     }
-
     return authTokenFactory
   }
 }());
