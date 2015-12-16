@@ -36,18 +36,19 @@
 		}
 
 		// controller method for adding a new goal, invoked when user hits submit
-		self.addGoal = function(parent_categories_heirachy, goal_or_task, date_created,
-			zen_level, reminder, optional_due_date, completed, priority) {
+		//self.addGoal = function(parent_categories_heirachy, goal_or_task, date_created,
+		//	zen_level, reminder, optional_due_date, completed, priority) {
+		self.addGoal = function() {
 
 			var data = {
-				parent_categories_heirachy: parent_categories_heirachy, 
-				goal_or_task:               goal_or_task, 
-				date_created:               date_created,
-				zen_level:                  zen_level,
-				reminder:                   reminder,
-				optional_due_date:          optional_due_date,
-				completed:                  completed,
-				priority:                   priority
+				parent_categories_heirachy: self.parent_categories_heirachy, 
+				goal_or_task:               self.goal_or_task, 
+				date_created:               self.date_created,
+				zen_level:                  self.zen_level,
+				reminder:                   self.reminder,
+				optional_due_date:          self.optional_due_date,
+				completed:                  self.completed,
+				priority:                   self.priority
 			}
 
 			// run the goal factory's addGoal method to send the POST request with the data object we just created

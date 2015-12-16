@@ -1,26 +1,3 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"></a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-      <ul class="nav navbar-nav navbar-right">
-        <li ><a href="#/login">Login</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
 <!-- first column -->
 <div class="col-md-12">
     <div class="row">
@@ -36,7 +13,6 @@
               <p>Priority: 1</p>
             </div> -->
 
-              <!-- call showGoals to populate the list first-->
               <h3 class="list-group-item-heading">{{ user.name }}</h3>
               <div ng-repeat="goal in user.goals| reverse" class="list-group-item">
                 <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
@@ -59,53 +35,32 @@
           </div>
         </div>
 
-
-
         <!-- second column -->
         <div class="col-sm-4">
             <h1>Sign Up!</h1>
-            <div class="row col-md-6 col-md-offset-3">
-
+            <a type="button" class="btn btn-block btn-primary" href="/#/signup">
+              <span>Sign Up!</span>
+              <span class="spinner"></span>
+            </a>
+            <!-- <div class="row col-md-6 col-md-offset-3">
             	<div class="jumbotron">
-
-            		<form >
-
+            		<form>
             			<div class="form-group">
-            				<label>First Name</label>
-            				<input type="text" class="form-control" >
+            				<label>Name</label>
+            				<input type="text" class="form-control" ng-model="user.newUser.name">
             			</div>
-
             			<div class="form-group">
-            				<label>Last Name</label>
-            				<input type="text" class="form-control" >
+            				<label>User Name</label>
+            				<input type="text" class="form-control" ng-model="user.newUser.username">
             			</div>
-
-            			<div class="form-group">
-            				<label>Email</label>
-            				<input type="text" class="form-control" >
-            			</div>
-
             			<div class="form-group">
             				<label>Password</label>
-            				<input type="password" class="form-control" >
+            				<input type="password" class="form-control" ng-model="user.newUser.password" >
             			</div>
-
-            			<div class="form-group">
-            				<label>Confirm Password</label>
-            				<input type="password" class="form-control" >
-            			</div>
-
-            			<button type="submit" class="btn btn-block btn-primary">
-            				<span>Sign Up!</span>
-            				<span class="spinner"></span>
-            			</button>
 
             		</form>
             	</div>
-
-            </div>
-
+            </div> -->
         </div>
-
     </div>
 </div>

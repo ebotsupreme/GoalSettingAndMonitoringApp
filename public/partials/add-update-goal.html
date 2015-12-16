@@ -3,11 +3,19 @@
 	<div class="jumbotron">
 		<h1 id="add-a-goal-header">Add / Update A Goal</h1>
 
-		<form >
+		<form id="new-goal-form" ng-submit="carsCtrl.addCar()">
 
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Goal:">
+				<input type="text" class="form-control" placeholder="Goal:" ng-model="goalsCtrl.goal_or_task">
 			</div>
+      parent_categories_heirachy: parent_categories_heirachy, 
+        goal_or_task:               goal_or_task, 
+        date_created:               date_created,
+        zen_level:                  zen_level,
+        reminder:                   reminder,
+        optional_due_date:          optional_due_date,
+        completed:                  completed,
+        priority:                   priority
 
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Zen Level:">
