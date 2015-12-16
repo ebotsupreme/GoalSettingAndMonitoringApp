@@ -224,7 +224,15 @@ apiRouter.route('/users/:user_id')
 // api endpoint to get user information
 // this is called from authService.js authFactory.getUser
 apiRouter.get('/me', function(req, res) {
-	res.send(req.decoded);
+	// Get user via req.decoded.user_id
+	User.findOne({ _id: req.decoded.user_id})
+	  .populate('goals')
+	  .exec(function (err, user) {
+        if (err) res.send(err);
+          console.log('in me route, Populated user with goals', user);
+          res.json(user);
+      })
+	//res.send(req.decoded);
 });
 
 // ----------------------------------------------------------------------------------------------------
