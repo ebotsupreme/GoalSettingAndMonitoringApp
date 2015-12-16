@@ -1,50 +1,51 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12 text-center">
-      <h1 class="my-goals-header">My Goals</h1>
+<div ng-if="main.loggedIn">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h1 class="my-goals-header">My Goals</h1>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container-fluid no-side-pad">
-  <div class="row">
-    <div class="col-md-3 col-sm-3">
-      <div class="side-bar">
-        <div class="side-bar-content hidden-xs content-links">
-          <h3>Goal News</h3>
-          <h3>My Goals</h3>
-          <h3>Add Goal</h3>
-          <h3>Settings</h3>
+  <div class="container-fluid no-side-pad">
+    <div class="row">
+      <div class="col-md-3 col-sm-3">
+        <div class="side-bar">
+          <div class="side-bar-content hidden-xs content-links">
+            <h3>Goal News</h3>
+            <h3>My Goals</h3>
+            <h3>Add Goal</h3>
+            <h3>Settings</h3>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-7 col-sm-6">
-      <div class="jumbotron user-profile">
-        <h2>Jake Shield</h2>
-        <p>Goals: Practice Angular!</p>
-        <p>Zen Level: 3</p>
-        <p>Due Date: N/A</p>
-        <p>Completed: N/A</p>
-        <p>Priority: 1</p>
-      </div>
-    </div>
-    <div class="col-md-2 col-sm-3">
-      <div class="side-bar">
-        <div class="side-bar-content">
-          <ul class="lineItUp">
-            <li><img height="40" src="http://sherrod.etsu.edu/sites/default/files/images/Female_User_Icon_clip_art_hight.png"/></li>
-            <li>Linda</li>
-          </ul>
-          <ul class="lineItUp">
-            <li><img height="40" src="https://linuxreference.files.wordpress.com/2010/11/linux_icon.gif"/></li>
-            <li>James</li>
-          </ul>
+      <div class="col-md-7 col-sm-6">
+        <div class="jumbotron user-profile">
+          <h2>Jake Shield</h2>
+          <p>Goals: Practice Angular!</p>
+          <p>Zen Level: 3</p>
+          <p>Due Date: N/A</p>
+          <p>Completed: N/A</p>
+          <p>Priority: 1</p>
         </div>
-        <div class="side-bar-content visible-xs content-links">
-          <h3>Goal News</h3>
-          <h3>My Goals</h3>
-          <h3>Add Goal</h3>
-          <h3>Settings</h3>
+      </div>
+      <div class="col-md-2 col-sm-3">
+        <div class="side-bar">
+          <div class="side-bar-content">
+            <ul class="lineItUp">
+              <li><img height="40" src="http://sherrod.etsu.edu/sites/default/files/images/Female_User_Icon_clip_art_hight.png"/></li>
+              <li>Linda</li>
+            </ul>
+            <ul class="lineItUp">
+              <li><img height="40" src="https://linuxreference.files.wordpress.com/2010/11/linux_icon.gif"/></li>
+              <li>James</li>
+            </ul>
+          </div>
+          <div class="side-bar-content visible-xs content-links">
+            <h3>Goal News</h3>
+            <h3>My Goals</h3>
+            <h3>Add Goal</h3>
+            <h3>Settings</h3>
+          </div>
         </div>
       </div>
     </div>

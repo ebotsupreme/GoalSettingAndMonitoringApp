@@ -3,10 +3,11 @@ angular.module('mainCtrl', [])
   .controller('mainController', function($rootScope, $location, auth){
 
     var mainCtrl = this;
+    mainCtrl.l = "Hello"
 
     // get info if a person is logged in
-    mainCtrl.loggedIn = auth.isLoggedIn
-
+    mainCtrl.loggedIn = auth.isLoggedIn()
+    console.log( "Is Logged", mainCtrl.loggedIn )
     // check to see if a user is logged in on every request
     $rootScope.$on('$routeChangeStart', function(){
       mainCtrl.loggedIn = auth.isLoggedIn();
@@ -42,6 +43,6 @@ angular.module('mainCtrl', [])
       auth.logout();
       mainCtrl.user = '';
 
-      $location.path('/login');
+      $location.path('/home');
     };
   });

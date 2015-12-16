@@ -3,6 +3,7 @@
 angular.module('userCtrl', ['userService'])
 
 .controller('userController', function(User) {
+	console.log("User controller instantiated")
 	var vm = this;
 
 	// set a processing variable to show loading things

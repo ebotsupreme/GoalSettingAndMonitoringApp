@@ -35,7 +35,7 @@
         .when('/profile', {
           templateUrl : 'partials/profile.html',
           controller : 'goalsController',
-          controllerAs : 'goalCtrl'
+          controllerAs : 'goalsCtrl'
         })
         .when('/addgoal', {
         templateUrl: 'partials/add-update-goal.html',

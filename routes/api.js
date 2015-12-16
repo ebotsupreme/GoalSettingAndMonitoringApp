@@ -301,8 +301,8 @@ apiRouter.route('/goals/:id')
       .populate('user_id')
       .exec(function (err, goal) {
         if (err) res.send(err);
-        console.log('Populated goal with user %s', goal.user_id.name);
-        res.json(goal)
+        //console.log('Populated goal with user %s', goal.user_id.name);
+				res.json(goal)
       });
 	})
 	.patch(function(req,res){
