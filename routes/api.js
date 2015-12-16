@@ -138,7 +138,7 @@ apiRouter.get('/', function(req, res) {
 apiRouter.route('/users')
 	// create a user (accessed at POST http://localhost:8080/users)
 	.post(function(req, res) {
-
+		console.log('creating user =======');
 		var user = new User();		// create a new instance of the User model
 		user.name = req.body.name;  // set the users name (comes from the request)
 		user.username = req.body.username;  // set the users username (comes from the request)
@@ -149,8 +149,10 @@ apiRouter.route('/users')
 				// duplicate entry
 				if (err.code == 11000)
 					return res.json({ success: false, message: 'A user with that username already exists. '});
-				else
+				else {
+					console.log('error =============', err);
 					return res.send(err);
+				}
 			}
 
 			// return a message
@@ -229,19 +231,19 @@ apiRouter.route('/goals/users/:user_id')
 		//User.findById(req.params.user_id, function(err, user) {
 		//	if (err) res.send(err);
 
-		//  res.json(user.goals);  		
+		//  res.json(user.goals);
 		//});
 			User.findOne({ _id: req.params.user_id})
 			  .populate('goals')
 			  .exec(function (err, user) {
           if (err) res.send(err);
           console.log('Populated user with goals', user);
-          res.json(user.goals); 
+          res.json(user.goals);
         })
 	})
-	.post(function(req,res){ 
+	.post(function(req,res){
 		// post a new goal for the user
-		var newGoal = new Goal 
+		var newGoal = new Goal
 		newGoal.parent_categories_heirachy = req.body.parent_categories_heirachy
 		newGoal.goal_or_task = req.body.goal_or_task
 		newGoal.date_created = req.body.date_created
@@ -271,7 +273,7 @@ apiRouter.route('/goals/users/:user_id')
 		// attach to given user, then save user
 		User.findById(req.params.user_id, function(err, user) {
 			if (err) res.send(err);
-      user.goals.push(newGoal); 		
+      user.goals.push(newGoal);
 
 			// save the goal updated user
 			user.save(function(err) {
@@ -286,7 +288,7 @@ apiRouter.route('/goals/users/:user_id')
 // ---------------------------api routes for individual goals -----------------------------------------
 //Read one, Update one and Delete one
 
-apiRouter.route('/goals/:id') 
+apiRouter.route('/goals/:id')
 	.get(function(req,res){ //
 		//Goal.findById(req.params.id, function(err,goal){
 		//	if(err) throw err
@@ -315,7 +317,7 @@ apiRouter.route('/goals/:id')
 
       User.findById(goal.user_id, function(err, user) {
 			  if (err) res.send(err);
- console.log("found user to delete goal out of, len " + user.goals.length)	
+ console.log("found user to delete goal out of, len " + user.goals.length)
         for (var i = 0; i < user.goals.length; i++) {
         	console.log("ids "+user.goals[i] +", "+ req.params.id)
         	if (user.goals[i] == req.params.id) { //*** not the same so only == ***
@@ -352,4 +354,3 @@ apiRouter.get('/users/:user_id/destroy-all-goals', function(req,res){
 */
 
 module.exports = apiRouter
-

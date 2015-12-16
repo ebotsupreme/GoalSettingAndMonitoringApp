@@ -36,10 +36,34 @@ angular.module('userCtrl', ['userService'])
 					});
 			});
 	};
+
+	// vm.submitNewUser = function(){
+	// 	console.log("submit new user =====", vm.newUser);
+	// 	User.create(vm.newUser)
+	// 		.success(function(data) {
+	// 			vm.processing = false;
+	// 			vm.newUser = {};
+	// 			vm.message = data.message;
+	//
+	// 			User.all()
+	// 				.success(function(data) {
+	//
+	// 					// when all the users come back, remove the processing variable
+	// 					vm.processing = false;
+	//
+	// 					// bind the users that come back to vm.users
+	// 					vm.users = data;
+	// 				});
+	// 		});
+	// }
+
+
+
 })
 
 // controller applied to user creation page
 .controller('userCreateController', function(User) {
+	console.log("userCreateController instantiated")
 	var vm = this;
 
 	// variable to hide/show elements of the view
@@ -48,6 +72,7 @@ angular.module('userCtrl', ['userService'])
 
 	// function to create a user
 	vm.saveUser = function() {
+		console.log("new user");
 		vm.processing = true;
 		vm.message = '';
 
@@ -57,8 +82,23 @@ angular.module('userCtrl', ['userService'])
 				vm.processing = false;
 				vm.userData = {};
 				vm.message = data.message;
+			console.log('yes! created======');
 			});
+
 	};
+
+	// vm.makeNewUser = function(){
+	// 	console.log('====new user===');
+	// 	vm.processing = true;
+	// 	User.create(vm.userData)
+	// 		.success(function(data) {
+	// 			vm.processing = false;
+	// 			vm.userData = {};
+	// 			vm.message = data.message;
+	// 		});
+	// };
+
+
 })
 
 // controller applied to user edit page
@@ -94,5 +134,3 @@ angular.module('userCtrl', ['userService'])
 			});
 	};
 });
-
-
