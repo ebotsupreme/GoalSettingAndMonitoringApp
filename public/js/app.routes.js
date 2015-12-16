@@ -16,7 +16,7 @@
         .when('/home', {
           templateUrl : 'partials/home.html',
           controller : 'userController',
-          controllerAs : 'user'
+          controllerAs : 'userCtrl'
         })
       // login page
         .when('/login', {
@@ -24,7 +24,7 @@
           controller : 'mainController',
           controllerAs: 'login'
         })
-      // show all users, TBD may get rid of thie route
+      // show all users
       .when('/users', {
         templateUrl: 'partials/home.html',
         controller: 'userController',
@@ -33,52 +33,28 @@
         // profile page when logged in
         .when('/profile', {
           templateUrl : 'partials/profile.html',
-          controller : 'placeholderController',
-          controllerAs : 'placeholder'
+          controller : 'goalController',
+          controllerAs : 'goalCtrl'
         })
-        // get route
-        .when('/goal', {
-          templateUrl : 'partials/goal-monitor.html',
-          controller : 'goalsController',
-          controllerAs : 'goalsCtrl'
-        })
-        .when('/goals/:goalId/update', {
+        .when('/addgoal', {
         templateUrl: 'partials/add-update-goal.html',
         controller: 'goalDetailController',
         controllerAs: 'goalDetailCtrl'
         })
         // goal monitor form
-        .when('/goals/:goalId/monitor', {
+        .when('/monitor', {
           templateUrl : 'partials/goal-monitor-form.html',
           controller : 'goalDetailController',
           controllerAs : 'goalDetailCtrl'
         })
         // goal monitor
-        .when('/goals/:goalId', {
+        .when('/display', {
           templateUrl : 'partials/goal-monitor.html',
           controller : 'goalDetailController',
           controllerAs : 'goalDetailCtrl'
         })
-      // login page
-        .when('/login', {
-          templateUrl : 'partials/login.html',
-          controller : 'mainController',
-          controllerAs: 'login'
-        })
-      // show all users, TBD may get rid of thie route
-      .when('/users', {
-        templateUrl: 'partials/home.html',
-        controller: 'userController',
-        controllerAs: 'user'
-      })
-      // sign up page
-     //   .when('/signup', {
-     //     templateUrl : 'partials/sign-up.html',
-     //     controller : 'userController',
-     //     controllerAs : 'userCtrlPlaceholder'
-     //   })
+
         // home page w/o logging in
-        
         .otherwise({
           redirectTo: '/home'
         })
