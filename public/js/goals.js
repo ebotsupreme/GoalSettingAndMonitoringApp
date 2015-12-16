@@ -15,6 +15,7 @@
 		};
 	}
 
+
 	function goalForm(){
 		var directive = {
 			restrict: 'E',
