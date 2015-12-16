@@ -1,26 +1,15 @@
-<div class="container" ng-if="mainController.isLoggedIn">
+<div class="container" ng-if="main.loggedIn">
   <div class="row">
     <div class="col-sm-12 text-center">
       <h1 class="my-goals-header">Goal Monitor</h1>
     </div>
   </div>
-</div>
-
-<div class="container-fluid no-side-pad">
-  <div class="row">
-    <div class="col-md-3 col-sm-3">
-      <div class="side-bar">
-        <div class="side-bar-content hidden-xs content-links">
-          <h3>Goal News</h3>
-          <h3>My Goals</h3>
-          <h3>Add Goal</h3>
-          <h3>Settings</h3>
-        </div>
-      </div>
-    </div>
 
 
-    <div class="col-md-7 col-sm-6">
+  <div class="container-fluid no-side-pad">
+    <div class="row">
+    
+      <div class="col-md-7 col-sm-6">
         <h2>{{main.user.name}}</h2>
         <div ng-repeat="goal in main.user.goals | reverse" class="jumbotron user-monitor">
           <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
