@@ -89,6 +89,47 @@ apiRouter.post('/authenticate', function(req, res) {
 	});
 });
 
+// on routes that end in /users
+// ----------------------------------------------------
+apiRouter.route('/users')
+	// create a user (accessed at POST http://localhost:8080/users)
+	.post(function(req, res) {
+		console.log('creating user =======');
+		var user = new User();		// create a new instance of the User model
+		user.name = req.body.name;  // set the users name (comes from the request)
+		user.username = req.body.username;  // set the users username (comes from the request)
+		user.password = req.body.password;  // set the users password (comes from the request)
+
+		user.save(function(err) {
+			if (err) {
+				// duplicate entry
+				if (err.code == 11000)
+					return res.json({ success: false, message: 'A user with that username already exists. '});
+				else {
+					console.log('error =============', err);
+					return res.send(err);
+				}
+			}
+
+			// return a message
+			res.json({ message: 'User created!' });
+		});
+	})
+
+	// get all the users (accessed at GET http://localhost:8080/api/users)
+	// TBD might be able to get rid of this one
+	.get(function(req, res) {
+		User.find({})
+			.populate('goals')
+			.exec(function(err, users) {
+			if (err) res.send(err);
+
+			// return the users w/o goals, the with goals version is another route below
+			res.json(users);
+		})
+	})
+
+
 // ---------------------------api routes to login a user ---------------------------------------------
 ////**All routes above this do not require a token to get access**
 // all of the goals (or the ones that require user login) above should be moved below this
@@ -133,45 +174,7 @@ apiRouter.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });
 });
 
-// on routes that end in /users
-// ----------------------------------------------------
-apiRouter.route('/users')
-	// create a user (accessed at POST http://localhost:8080/users)
-	.post(function(req, res) {
-		console.log('creating user =======');
-		var user = new User();		// create a new instance of the User model
-		user.name = req.body.name;  // set the users name (comes from the request)
-		user.username = req.body.username;  // set the users username (comes from the request)
-		user.password = req.body.password;  // set the users password (comes from the request)
 
-		user.save(function(err) {
-			if (err) {
-				// duplicate entry
-				if (err.code == 11000)
-					return res.json({ success: false, message: 'A user with that username already exists. '});
-				else {
-					console.log('error =============', err);
-					return res.send(err);
-				}
-			}
-
-			// return a message
-			res.json({ message: 'User created!' });
-		});
-	})
-
-	// get all the users (accessed at GET http://localhost:8080/api/users)
-	// TBD might be able to get rid of this one
-	.get(function(req, res) {
-		User.find({})
-			.populate('goals')
-			.exec(function(err, users) {
-			if (err) res.send(err);
-
-			// return the users w/o goals, the with goals version is another route below
-			res.json(users);
-		})
-	})
 
 
 // on routes that end in /users/:user_id
