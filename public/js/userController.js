@@ -75,6 +75,11 @@ angular.module('userCtrl', ['userService'])
 		console.log("new user");
 		vm.processing = true;
 		vm.message = '';
+		vm.userData = {
+			name: vm.name,
+			username: vm.username,
+			password: vm.password
+		}
 
 		// use the create function in the userService
 		User.create(vm.userData)
