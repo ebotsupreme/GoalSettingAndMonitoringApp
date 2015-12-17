@@ -52,7 +52,7 @@
         })
         // goal edit form
         .when('/editgoal', {
-          templateUrl : 'partials/goal-edit.html',
+          templateUrl : 'partials/goal-update.html',
           controller : 'goalDetailController',
           controllerAs : 'goalDetailCtrl'
         })
