@@ -4,15 +4,15 @@
 	// add 2 controllers
 	angular.module('goalsCtrl', [])
 		.controller('goalsController', goalsController)
-		.controller('goalDetailController', goalDetailController)
+		//.controller('goalDetailController', goalDetailController)
 
 	// inject both controllers with goals factory
 
   // these 2 both use the goals factory:
-	goalsController.$inject = ['goals', '$window']
-	goalDetailController.$inject = ['goals','$routeParams','$location'] //location is for rendering a new view
+	//goalsController.$inject = ['goals', '$window']
+	goalsController.$inject = ['goals','$routeParams', '$window', '$location'] //location is for rendering a new view
 
-	function goalsController(goals, $window){
+	function goalsController(goals, $routeParams, $window, $location){
 		var self = this
 		self.name = 'Goal List'
 		self.api = goals  //goals factory
@@ -65,12 +65,7 @@
 				.next($window.location = '/#/profile')
 			})
 		}
-	}
 
-	function goalDetailController(goals,$routeParams,$location){
-		var self = this
-		self.name = 'Goal Detail'
-		self.api = goals  //goals factory
 
 		// the goal being processed here
 		self.goal = null
@@ -85,30 +80,8 @@
 				self.goal = response
 			})
 		}
-		//self.showGoal($routeParams.goalId)
-
-		// update the goal, on successful PATCH, set the goal object to the response from the server,
-		// which updates the front-end, then turn the editing property to false, which toggles back to
-		// show the goal details without the edit form
-		self.updateGoal = function(user_id) {
-
-			var goal = {
-				parent_categories_heirachy: self.parent_categories_heirachy,
-				goal_or_task:               self.goal_or_task,
-				date_created:               self.date_created,
-				zen_level:                  self.zen_level,
-				//reminder:                   self.reminder, not MVP
-				optional_due_date:          self.optional_due_date,
-				completed:                  self.completed,
-				priority:                   self.priority
-			}
-
-			self.api.updateGoal(goal).success(function(response){
-				console.log(response)
-				self.goal = response
-				self.editing = false
-			})
-		}
+		self.showGoal($routeParams.goalId)
+		
 
         self.newMon = {}
 
@@ -127,7 +100,7 @@
 		self.removeGoal = function(goalId){
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)
-				$location.path('/goals')
+				$location.path('/profile')
 			})
 		}
 	}
