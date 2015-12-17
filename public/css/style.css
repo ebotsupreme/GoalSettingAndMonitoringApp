@@ -76,6 +76,15 @@ nav {
 .goalContent {
   padding: 15px 5px;
   background: #00aee0;
+  color: #fff;
+}
+
+.goal-content-border-home{
+  border: 1px solid #e04700;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 /*profile*/

@@ -37,7 +37,6 @@
               <button type="button" class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.editGoal(goal._id)">Edit Goal</button>
               <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id, main.user)">Delete Goal</button>
             </div>
-
             <div>
               <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored:
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalDiv" ng-click="goalsCtrl.selectMonitor(monitor)">{{monitor.m_date}}</button>
@@ -67,10 +66,6 @@
 
               </p>
             </div>
-
-
-
-
           </div>
         </div>
       </div>

@@ -17,12 +17,11 @@
       </div>
       <div class="col-md-6 col-sm-5">
         <div class="goalContent" ng-repeat="user in userCtrl.users | reverse">
-          <h4>Goals of user</h4>
-          <h3 class="list-group-item-heading">{{ user.name }}:</h3>
-          <div ng-repeat="goal in user.goals| reverse" class="list-group-item">
+          <h3 class="list-group-item-heading">Goals for {{ user.name }}:</h3>
+          <div ng-repeat="goal in user.goals| reverse" class="list-group-item goal-content-border-home">
             <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
             <p class="list-group-item-text">Goal: {{ goal.goal_or_task }}</p>
-            <p class="list-group-item-text">Goal: {{ goal.date_created }}</p>
+            <p class="list-group-item-text">Date Created: {{ goal.date_created }}</p>
             <p ng-if="goal.priority" class="list-group-item-text">Priority: {{ goal.priority }}</p>
             <p ng-if="goal.zen_level" class="list-group-item-text">Zen Level: {{ goal.zen_level }}
             <small ng-if="goal.zen_level==1">(maintenance activity, do periodically indefinitly)</small>
