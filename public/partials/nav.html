@@ -23,7 +23,8 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
+        <li class="welcome">Welcome to the Goals App!</li>
+        <!-- <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">
@@ -39,7 +40,7 @@
               </form>
             </a></li>
           </ul>
-        </li>
+        </li> -->
 
         <li ng-if="!h.loggedIn"><a  href="#/login">Login</a> </li>
         <li ng-if="h.loggedIn" ng-click="h.doLogout()"><a  href="#/logout">Logout</a> </li>

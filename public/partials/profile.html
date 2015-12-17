@@ -11,12 +11,13 @@
       <div class="col-md-3 col-sm-3">
         <div class="side-bar">
           <div class="side-bar-content hidden-xs content-links">
+            <h3><a href="/#/home">Home</a></h3>
             <h3><a href="/#/monitor">Monitor Goals</a></h3>
             <h3><a href="/#/addgoal">Add Goal</a></h3>
           </div>
         </div>
       </div>
-      <div class="col-md-7 col-sm-6">
+      <div class="col-md-8 col-sm-7">
         <div class="jumbotron user-profile">
           <div class="list-inline">
           <h2 class="profile-user-name">{{main.user.name}}'s goal profile:</h2>
@@ -36,9 +37,8 @@
               <button type="button" class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.editGoal(goal._id)">Edit Goal</button>
               <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id, main.user)">Delete Goal</button>
             </div>
-
             <div>
-              <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored: 
+              <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored:
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalDiv" ng-click="goalsCtrl.selectMonitor(monitor)">{{monitor.m_date}}</button>
 
                 <!-- Modal -->
@@ -66,14 +66,10 @@
 
               </p>
             </div>
-
-
-
-
           </div>
         </div>
       </div>
-      <div class="col-md-2 col-sm-3">
+      <!-- <div class="col-md-2 col-sm-3">
         <div class="side-bar">
           <div class="side-bar-content">
             <ul class="lineItUp">
@@ -93,7 +89,7 @@
             <h3>Settings</h3>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

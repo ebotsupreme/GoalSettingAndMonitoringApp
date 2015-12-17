@@ -62,6 +62,12 @@ nav {
 .navPad {
   height: 52px;
 }
+.welcome{
+  position: relative;
+  display: block;
+  padding: 15px 15px;
+  color: #fff;
+}
 
 /*home*/
 
@@ -74,9 +80,25 @@ nav {
   padding: 0 15px 15px 15px;
 }
 .goalContent {
-  padding: 15px 5px;
+  padding: 15px 15px;
+  background: #00aee0;
+  color: #fff;
+}
+
+.goal-content-border-home{
+  border: 1px solid #e04700;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.welcome-backdrop{
+  border: 1px solid #e04700;
+  padding: 15px;
+  color: #fff;
   background: #00aee0;
 }
+
 
 /*profile*/
 
