@@ -21,6 +21,7 @@
       })
     }
     authFactory.logout = function(){
+
       authToken.setToken()
     }
     authFactory.isLoggedIn = function(){
@@ -39,7 +40,7 @@
 
     return authFactory
   }
-  
+
   function authInterceptor($q, authToken, $location){
     var authIntercept = {}
 
@@ -58,7 +59,7 @@
     }
     return authIntercept
   }
-  
+
   function authToken($window){
     var authTokenFactory = {}
     // get the token out of local storage

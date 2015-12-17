@@ -81,7 +81,9 @@ apiRouter.post('/authenticate', function(req, res) {
 				res.json({
 					success: true,
 					message: 'Enjoy your token!',
-					token: token
+					token: token,
+					username: user.username,
+					user_id: user._id
 				});
 			}
 		}
