@@ -33,7 +33,7 @@
 
 
               <div ng-controller="goalDetailController as goalDetailCtrl">
-                <button class="btn-monitor btn-block btn-primary" ng-click="goalDetailCtrl.removeGoal(goal._id)">Delete Goal</button>
+                <button class="btn-monitor btn-block btn-primary" ng-click="goalDetailCtrl.removeGoal(goal._id)" confirm="Are you sure you want to delete this goal?">Delete Goal</button>
               </div>
 
 

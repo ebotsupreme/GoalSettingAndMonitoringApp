@@ -124,6 +124,7 @@
 
 		// delete the goal using this, then afterwards, redirect the user back to /goals
 		self.removeGoal = function(goalId){
+			alert( "Fuck you bitch!")
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)
 				$location.path('/monitor')
