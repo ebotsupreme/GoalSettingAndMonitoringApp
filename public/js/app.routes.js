@@ -51,16 +51,16 @@
         controllerAs: 'goalsCtrl'
         })
         // goal edit form
-        .when('/editgoal', {
+        .when('/editgoal/:goalId', {
           templateUrl : 'partials/goal-update.html',
-          controller : 'goalDetailController',
-          controllerAs : 'goalDetailCtrl'
+          controller : 'goalsController',
+          controllerAs : 'goalsCtrl'
         })
         // goal monitor form
         .when('/monitor', {
           templateUrl : 'partials/goal-monitor-form.html',
-          controller : 'goalDetailController',
-          controllerAs : 'goalDetailCtrl'
+          controller : 'goalsController',
+          controllerAs : 'goalsCtrl'
         })
         // home page w/o logging in
         .otherwise({

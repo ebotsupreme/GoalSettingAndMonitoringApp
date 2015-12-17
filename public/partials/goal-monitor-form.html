@@ -25,23 +25,23 @@
           <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
           <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
           <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
-
-          <form ng-submit="goalDetailCtrl.updateStatus(goal)">
+      
+          <form ng-submit="goalsCtrl.updateStatus(goal)">
             <div class="form-group">
               <label>Hours devoted since last monitoring</label>
-              <input type="number" class="form-control input-width" placeholder="Hours:" ng-model="goalDetailCtrl.newMon.hours_devoted">
+              <input type="number" class="form-control input-width" placeholder="Hours:" ng-model="goalsCtrl.newMon.hours_devoted">
             </div>
             <div class="form-group">
               <label>Quality of activity rating</label>
-              <input type="number" class="form-control input-width" placeholder="1 - 10:" ng-model="goalDetailCtrl.newMon.quality">
+              <input type="number" class="form-control input-width" placeholder="1 - 10:" ng-model="goalsCtrl.newMon.quality">
             </div>
             <div class="form-group">
               <label>Perceived Result</label>
-              <input type="number" class="form-control input-width" placeholder="1 - 10:" ng-model="goalDetailCtrl.newMon.percieved_result">
+              <input type="number" class="form-control input-width" placeholder="1 - 10:" ng-model="goalsCtrl.newMon.percieved_result">
             </div>
             <div class="form-group">
               <label>Comment</label>
-              <input type="text" class="form-control" placeholder="Comment:" ng-model="goalDetailCtrl.newMon.comment">
+              <input type="text" class="form-control" placeholder="Comment:" ng-model="goalsCtrl.newMon.comment">
             </div>
           <button type="submit" class="btn-monitor btn-block btn-primary">Submit</button>
           </form>
