@@ -327,34 +327,42 @@ apiRouter.route('/goals/:id')
 	  console.log("params", req.params);
       Goal.findById( req.params.id, function(err, goal) {
 	    if (err) {
+	      console.log("ERROR findng goal, err = "+err)
 	  	  res.send(err);
 	    }
         else if (!goal){
+          console.log("ERROR: cannot delete null goal")
 		  res.send("ERROR: cannot delete null goal")
 	    }else{
+	      console.log("looking for user that goal = "+goal+" belongs to ")
           User.findById(goal.user_id, function(err, user) {
-		    if (err) res.send(err);
-            console.log("found user to delete goal out of, len " + user.goals.length)
-            for (var i = 0; i < user.goals.length; i++) {
-        	  console.log("ids "+user.goals[i] +", "+ req.params.id)
-        	  if (user.goals[i] == req.params.id) { //*** not the same so only == ***
-                user.goals.splice(i, 1);
-                console.log("spliced out "+i+" indexed goal")
-                continue;
+		    if (err) {
+		    	console.log("ERROR finding user, err = "+err)
+		    	res.send(err);
+		    }
+		    else {
+              console.log("found user to delete goal out of, len " + user.goals.length)
+              for (var i = 0; i < user.goals.length; i++) {
+        	    console.log("ids "+user.goals[i] +", "+ req.params.id)
+        	    if (user.goals[i] == req.params.id) { //*** not the same so only == ***
+                  user.goals.splice(i, 1);
+                  console.log("spliced out "+i+" indexed goal")
+                  continue;
+                }
               }
-            }
-	        // save the goal deleted user
-	        user.save(function(err) {
-		      if (err) {res.send(err);}
-		      else {
-		        //delete from goal collection
-		  	    Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
-			      if(err) throw err
-			      res.json({message:"goal deleted!"})
-			      //res.render('profile', {user: req.user});
-		        })
-		      }
-	        });
+	          // save the goal deleted user
+	          user.save(function(err) {
+		        if (err) {res.send(err);}
+		        else {
+		          console.log("Deleted goal out of user array!")
+		          //delete from goal collection
+		  	      Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
+			        if(err) throw err
+			        res.json({message:"goal deleted!"})
+		          })
+		        }
+	          });
+	        }
 	      });
 		}
       });

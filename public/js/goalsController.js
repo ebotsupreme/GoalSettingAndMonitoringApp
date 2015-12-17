@@ -114,7 +114,6 @@
 			$window.location = '/#/profile'
 		}
 
-
         self.newMon = {}
 
 		self.updateStatus = function(goal) {
@@ -122,25 +121,23 @@
             self.newMon = {} //clear out values for next one
 
 			self.api.updateGoal(goal).success(function(response){
-				console.log(response)
 				self.goal = response
 				self.editing = false
+				alert("Monitoring added for " + response.monitoring[response.monitoring.length-1].m_date);
 			})
 		}
 
-		// delete the goal using this, then afterwards, redirect the user back to /goals
+		// delete the goal using this, then afterwards, redirect the user back to the same page
 		self.removeGoal = function(goalId, user){
 			var r = confirm("Delete Goal?");
 			if (r == true) {
 				self.api.removeGoal(goalId).success(function(response){
 					console.log(response)
 					// $location.path('/monitor')
+					location.reload();
 					self.showGoals( user._id )
 				})
-			} else {
-			    x = "You pressed Cancel!";
-			}
-
+			} 
 		}
 
 		self.click = function( stuff ) {
