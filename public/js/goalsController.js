@@ -54,6 +54,7 @@
 			// run the goal factory's addGoal method to send the POST request with the data object we just created
 			self.api.addGoal(user_id, data).then(function success(response){
 				console.log('added a goal!')
+
 				// when we successfully finish the POST request, take the server's response (the new goal) and add
 				// it to this controller's goal list, which updates the front-end with the new goal
 				self.goals.push(response.data.goal)
@@ -61,6 +62,7 @@
 				self.newGoal = {}
 				// focus on the first input field for the user to add another goal (UI enhancement)
 				$window.document.querySelectorAll('#new-goal-form input')[0].focus()
+				.next($window.location = '/#/profile')
 			})
 		}
 	}
@@ -91,8 +93,8 @@
 		self.updateGoal = function(user_id) {
 
 			var goal = {
-				parent_categories_heirachy: self.parent_categories_heirachy, 
-				goal_or_task:               self.goal_or_task, 
+				parent_categories_heirachy: self.parent_categories_heirachy,
+				goal_or_task:               self.goal_or_task,
 				date_created:               self.date_created,
 				zen_level:                  self.zen_level,
 				//reminder:                   self.reminder, not MVP
@@ -121,7 +123,7 @@
 			})
 		}
 
-		// delete the goal using this, then afterwards, redirect the user back to /goals 
+		// delete the goal using this, then afterwards, redirect the user back to /goals
 		self.removeGoal = function(goalId){
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)
