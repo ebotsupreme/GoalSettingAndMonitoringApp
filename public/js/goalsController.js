@@ -127,7 +127,7 @@
 		self.removeGoal = function(goalId){
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)
-				$location.path('/goals')
+				$location.path('/profile')
 			})
 		}
 	}

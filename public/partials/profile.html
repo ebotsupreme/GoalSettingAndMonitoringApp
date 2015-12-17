@@ -30,7 +30,13 @@
             <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
             <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
             <button type="submit" class="btn-monitor btn-block btn-primary">Edit Goal</button>
-            <button type="submit" class="btn-monitor btn-block btn-primary">Delete Goal</button>
+
+
+              <div ng-controller="goalDetailController as goalDetailCtrl">
+                <button class="btn-monitor btn-block btn-primary" ng-click="goalDetailCtrl.removeGoal(goal._id)">Delete Goal</button>
+              </div>
+
+
             <div>
               <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored: <a href="#">{{monitor.m_date}}</a></p>
             </div>

@@ -5,21 +5,27 @@
     </div>
   </div>
 
-
   <div class="container-fluid no-side-pad">
     <div class="row">
-    
+      <div class="col-md-3 col-sm-3">
+        <div class="side-bar">
+          <div class="side-bar-content hidden-xs content-links">
+            <h3><a href="/#/profile">Profile</a></h3>
+            <h3><a href="/#/addgoal">Add Goal</a></h3>
+          </div>
+        </div>
+      </div>
       <div class="col-md-7 col-sm-6">
         <h2>{{main.user.name}}</h2>
         <div ng-repeat="goal in main.user.goals | reverse" class="jumbotron user-monitor">
           <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
           <h4 class="list-group-item-text">Goal: {{ goal.goal_or_task }}</h4>
           <p class="list-group-item-text">Priority: {{ goal.priority }}</p>
-          <p class="list-group-item-text">Zen Level: {{ goal.zen_level }} 
+          <p class="list-group-item-text">Zen Level: {{ goal.zen_level }}
           <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
           <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
           <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
-      
+
           <form ng-submit="goalDetailCtrl.updateStatus(goal)">
             <div class="form-group">
               <label>Hours devoted since last monitoring</label>
@@ -40,17 +46,6 @@
           <button type="submit" class="btn-monitor btn-block btn-primary">Submit</button>
           </form>
         </div>
-    </div>
-
-    <div class="col-md-2 col-sm-3">
-      <div class="side-bar">
-        <div class="side-bar-content visible-xs content-links">
-          <h3>Goal News</h3>
-          <h3>My Goals</h3>
-          <h3>Add Goal</h3>
-          <h3>Settings</h3>
-        </div>
-      </div>
     </div>
   </div>
 </div>
