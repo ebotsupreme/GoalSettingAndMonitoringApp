@@ -29,7 +29,7 @@
             <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
             <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
             <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
-            
+
             <div ng-controller="goalsController as goalsCtrl">
               <button type="button" class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.editGoal(goal._id)">Edit Goal</button>
               <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id)">Delete Goal</button>

@@ -78,7 +78,7 @@
 			self.api.show(goalId).success(function(response){
 				self.goal = response
 				console.log( response )
-				$window.location = '#/editgoal/'+goalId		
+				$window.location = '#/editgoal/'+goalId
 				self.zen_level = response.zen_level
 			})
 		}
@@ -113,7 +113,7 @@
 			})
 			$window.location = '/#/profile'
 		}
-		
+
 
         self.newMon = {}
 
@@ -130,10 +130,16 @@
 
 		// delete the goal using this, then afterwards, redirect the user back to /goals
 		self.removeGoal = function(goalId){
-			self.api.removeGoal(goalId).success(function(response){
-				console.log(response)
-				$window.location = '/#/profile'
-			})
+			var r = confirm("Delete Goal?");
+			if (r == true) {
+				self.api.removeGoal(goalId).success(function(response){
+					console.log(response)
+					$location.path('/monitor')
+				})
+			} else {
+			    x = "You pressed Cancel!";
+			}
+
 		}
 	}
 }())

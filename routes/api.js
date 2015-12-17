@@ -321,7 +321,7 @@ apiRouter.route('/goals/:id')
         //console.log('Populated goal with user %s', goal.user_id.name);
 		else {
 			res.json(goal)
-		}	
+		}
       });
 	})
 	.patch(function(req,res){
@@ -334,27 +334,31 @@ apiRouter.route('/goals/:id')
 	})
 	.delete(function(req,res){
 		//delete from user.goals
+		console.log("params", req.params);
     Goal.findById( req.params.id, function(err, goal) {
-			if (err) res.send(err);
-
-      User.findById(goal.user_id, function(err, user) {
-			  if (err) res.send(err);
- console.log("found user to delete goal out of, len " + user.goals.length)
-        for (var i = 0; i < user.goals.length; i++) {
-        	console.log("ids "+user.goals[i] +", "+ req.params.id)
-        	if (user.goals[i] == req.params.id) { //*** not the same so only == ***
-            user.goals.splice(i, 1);
-            console.log("spliced out "+i+" indexed goal")
-            continue;
+			if (err) {res.send(err);}
+      else if (!goal){
+				res.send("ERROR: cannot delete null goal")
+			}else{
+        User.findById(goal.user_id, function(err, user) {
+			    if (err) res.send(err);
+          console.log("found user to delete goal out of, len " + user.goals.length)
+          for (var i = 0; i < user.goals.length; i++) {
+        	  console.log("ids "+user.goals[i] +", "+ req.params.id)
+        	  if (user.goals[i] == req.params.id) { //*** not the same so only == ***
+              user.goals.splice(i, 1);
+              console.log("spliced out "+i+" indexed goal")
+              continue;
+            }
           }
-        }
-			  // save the goal deleted user
-			  user.save(function(err) {
-				  if (err) {res.send(err);}
-				  // return a message
-				  //else {res.json({ message: 'Goal saved in user!' });}
+			    // save the goal deleted user
+			    user.save(function(err) {
+				    if (err) {res.send(err);}
+				    // return a message
+				    //else {res.json({ message: 'Goal saved in user!' });}
+			    });
 			  });
-			});
+		  }
     });
 
 		//delete from goal collection
