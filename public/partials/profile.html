@@ -38,7 +38,7 @@
             </div>
 
             <div>
-              <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored: {{monitor}}
+              <p class="list-group-item-text" ng-repeat="monitor in goal.monitoring">Dates Monitored: 
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalDiv" ng-click="goalsCtrl.selectMonitor(monitor)">{{monitor.m_date}}</button>
 
                 <!-- Modal -->
@@ -55,11 +55,9 @@
                           <h4>Quality: {{ goalsCtrl.selectedMonitor.quality }}</h4>
                           <h4>Perceived Result: {{ goalsCtrl.selectedMonitor.percieved_result }}</h4>
                           <h4>Comment: {{ goalsCtrl.selectedMonitor.comment }}</h4>
-
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                       </div>
                     </div>
