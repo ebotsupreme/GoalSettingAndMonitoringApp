@@ -14,6 +14,18 @@
 
 	function goalsController(goals, $routeParams, $window, $location){
 		var self = this
+		self.showModal = false;
+
+		self.selectedMonitor = {};
+		self.selectMonitor = function(monitor){
+			self.selectedMonitor = monitor
+		}
+
+		// self.toggleModal = function(){
+		// 	console.log('show modal')
+		// 		self.showModal = !self.showModal;
+		// };
+
 		self.name = 'Goal List'
 		self.api = goals  //goals factory
 
