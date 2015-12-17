@@ -61,8 +61,7 @@
 				// clear this controller's newGoal object, which clears the input fields on the front-end
 				self.newGoal = {}
 				// focus on the first input field for the user to add another goal (UI enhancement)
-				$window.document.querySelectorAll('#new-goal-form input')[0].focus()
-				.next($window.location = '/#/profile')
+				$window.location = '/#/profile'
 			})
 		}
 	}
@@ -127,7 +126,7 @@
 		self.removeGoal = function(goalId){
 			self.api.removeGoal(goalId).success(function(response){
 				console.log(response)
-				$location.path('/profile')
+				$location.path('/monitor')
 			})
 		}
 	}
