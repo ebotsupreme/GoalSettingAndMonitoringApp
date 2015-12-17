@@ -2,6 +2,12 @@
 
 /*general*/
 
+p {
+  font-size: 15px;
+}
+small {
+  font-size: 16px;
+}
 ul {
   padding: 0;
   margin: 0;
@@ -50,9 +56,28 @@ nav {
 .navbar-brand {
   padding-top: 5px;
 }
-.navbar-default .navbar-nav>li>a {
+.navbar .navbar-nav>li>a {
   color: #fff;
 }
+.navPad {
+  height: 52px;
+}
+
+/*home*/
+
+.goal-header {
+  font-size: 24px;
+  margin: 0;
+  padding: 15px;
+}
+.list-group-item-heading {
+  padding: 0 15px 15px 15px;
+}
+.goalContent {
+  padding: 15px 5px;
+  background: #00aee0;
+}
+
 /*profile*/
 
 .my-goals-header{
