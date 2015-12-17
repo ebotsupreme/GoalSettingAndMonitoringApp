@@ -26,7 +26,7 @@ apiRouter.post('/sample', function(req, res) {
 			sampleUser.password = 'test';
 
 			sampleUser.save(function(err) {
-				if (err) res.send(err);
+				if (err) {res.send(err);}
 			});
 		} else {
 			console.log(user);
@@ -34,10 +34,10 @@ apiRouter.post('/sample', function(req, res) {
 			// if there is a test user, update the password
 			user.password = 'test';
 			user.save(function(err) {
-				if (err) res.send(err);
+				if (err) {res.send(err);}
 
 				// return a message
-				res.json({ message: 'Test User updated!' });
+				else {res.json({ message: 'Test User updated!' });}
 			});
 		}
 		res.send('done')
@@ -121,10 +121,10 @@ apiRouter.route('/users')
 		User.find({})
 			.populate('goals')
 			.exec(function(err, users) {
-			if (err) res.send(err);
+			if (err) {res.send(err);}
 
 			// return the users w/o goals, the with goals version is another route below
-			res.json(users);
+			else {res.json(users);}
 		})
 	})
 
@@ -182,30 +182,32 @@ apiRouter.route('/users/:user_id')
 	// get the user with that id
 	.get(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
-			if (err) res.send(err);
+			if (err) {res.send(err);}
 
 			// return that user
-			res.json(user);
+			else {res.json(user);}
 		});
 	})
 
 	// update the user with this id
 	.put(function(req, res) {
 		User.findById(req.params.user_id, function(err, user) {
-			if (err) res.send(err);
+			if (err) {res.send(err);}
+			else {
 
-			// set the new user information if it exists in the request
-			if (req.body.name) user.name = req.body.name;
-			if (req.body.username) user.username = req.body.username;
-			if (req.body.password) user.password = req.body.password;
+			  // set the new user information if it exists in the request
+			  if (req.body.name) user.name = req.body.name;
+			  if (req.body.username) user.username = req.body.username;
+			  if (req.body.password) user.password = req.body.password;
 
 			// save the user
-			user.save(function(err) {
+			  user.save(function(err) {
 				if (err) res.send(err);
 
 				// return a message
 				res.json({ message: 'User updated!' });
-			});
+			  });
+			}
 		});
 	})
 
@@ -214,9 +216,9 @@ apiRouter.route('/users/:user_id')
 		User.remove({
 			_id: req.params.user_id
 		}, function(err, user) {
-			if (err) res.send(err);
+			if (err) {res.send(err);}
 
-			res.json({ message: 'Successfully deleted' });
+			else {res.json({ message: 'Successfully deleted' });}
 		});
 	});
 
@@ -227,9 +229,11 @@ apiRouter.get('/me', function(req, res) {
 	User.findOne({ _id: req.decoded.user_id})
 	  .populate('goals')
 	  .exec(function (err, user) {
-        if (err) res.send(err);
+        if (err) {res.send(err);}
+        else {
           console.log('in me route, Populated user with goals', user);
           res.json(user);
+        }
       })
 	//res.send(req.decoded);
 });
@@ -249,9 +253,11 @@ apiRouter.route('/goals/users/:user_id')
 			User.findOne({ _id: req.params.user_id})
 			  .populate('goals')
 			  .exec(function (err, user) {
-          if (err) res.send(err);
-          console.log('Populated user with goals', user);
-          res.json(user.goals);
+          if (err) {res.send(err);}
+          else {
+            console.log('Populated user with goals', user);
+            res.json(user.goals);
+          }
         })
 	})
 	.post(function(req,res){
@@ -279,22 +285,23 @@ apiRouter.route('/goals/users/:user_id')
     }
 */
 		newGoal.save(function(err) {
-			if (err) res.send(err)
-			res.json({message: 'Goal record saved!'})
+			if (err) {res.send(err)}
+			else {res.json({message: 'Goal record saved!'})}
 		});
 
 		// attach to given user, then save user
 		User.findById(req.params.user_id, function(err, user) {
-			if (err) res.send(err);
-      user.goals.push(newGoal);
+			if (err) {res.send(err);}
+            else {
+              user.goals.push(newGoal);
 
-			// save the goal updated user
-			user.save(function(err) {
-				if (err) res.send(err);
+			  // save the goal updated user
+			  user.save(function(err) {
+				if (err) {res.send(err);}
 				// return a message
-				//res.json({ message: 'Goal saved in user!' });
-			});
-
+				//else {res.json({ message: 'Goal saved in user!' });}
+			  });
+            }
 		});
 	})
 
@@ -310,9 +317,11 @@ apiRouter.route('/goals/:id')
 		Goal.findOne({ _id: req.params.id })
       .populate('user_id')
       .exec(function (err, goal) {
-        if (err) res.send(err);
+        if (err) {res.send(err);}
         //console.log('Populated goal with user %s', goal.user_id.name);
-				res.json(goal)
+		else {
+			res.json(goal)
+		}
       });
 	})
 	.patch(function(req,res){
@@ -328,26 +337,28 @@ apiRouter.route('/goals/:id')
 		console.log("params", req.params);
     Goal.findById( req.params.id, function(err, goal) {
 			if (err) {res.send(err);}
-			console.log( "Goal is", goal )
-	      User.findById(goal.user_id, function(err, user) {
-				  if (err) res.send(err);
-	 console.log("found user to delete goal out of, len " + user.goals.length)
-	        for (var i = 0; i < user.goals.length; i++) {
-	        	console.log("ids "+user.goals[i] +", "+ req.params.id)
-	        	if (user.goals[i] == req.params.id) { //*** not the same so only == ***
-	            user.goals.splice(i, 1);
-	            console.log("spliced out "+i+" indexed goal")
-	            continue;
-	          }
-	        }
-				  // save the goal deleted user
-				  user.save(function(err) {
-					  if (err) res.send(err);
-					  // return a message
-					  //res.json({ message: 'Goal saved in user!' });
-				  });
-				});
-
+      else if (!goal){
+				res.send("ERROR: cannot delete null goal")
+			}else{
+        User.findById(goal.user_id, function(err, user) {
+			    if (err) res.send(err);
+          console.log("found user to delete goal out of, len " + user.goals.length)
+          for (var i = 0; i < user.goals.length; i++) {
+        	  console.log("ids "+user.goals[i] +", "+ req.params.id)
+        	  if (user.goals[i] == req.params.id) { //*** not the same so only == ***
+              user.goals.splice(i, 1);
+              console.log("spliced out "+i+" indexed goal")
+              continue;
+            }
+          }
+			    // save the goal deleted user
+			    user.save(function(err) {
+				    if (err) {res.send(err);}
+				    // return a message
+				    //else {res.json({ message: 'Goal saved in user!' });}
+			    });
+			  });
+		  }
     });
 
 		//delete from goal collection

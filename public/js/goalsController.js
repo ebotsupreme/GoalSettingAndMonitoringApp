@@ -4,15 +4,15 @@
 	// add 2 controllers
 	angular.module('goalsCtrl', [])
 		.controller('goalsController', goalsController)
-		.controller('goalDetailController', goalDetailController)
+		//.controller('goalDetailController', goalDetailController)
 
 	// inject both controllers with goals factory
 
   // these 2 both use the goals factory:
-	goalsController.$inject = ['goals', '$window']
-	goalDetailController.$inject = ['goals','$routeParams','$location'] //location is for rendering a new view
+	//goalsController.$inject = ['goals', '$window']
+	goalsController.$inject = ['goals','$routeParams', '$window', '$location'] //location is for rendering a new view
 
-	function goalsController(goals, $window){
+	function goalsController(goals, $routeParams, $window, $location){
 		var self = this
 		self.name = 'Goal List'
 		self.api = goals  //goals factory
@@ -22,6 +22,9 @@
 
 		// for a new goal to POST
 		self.newGoal = {}
+
+		// for the single goal being processed here
+		self.goal = null
 
 		//// get list of goals, and set this controller's 'goals' property to
 		//// the array we get back from our API
@@ -40,19 +43,20 @@
 		//	zen_level, reminder, optional_due_date, completed, priority) {
 		self.addGoal = function(user_id) {
 
-			var data = {
-				parent_categories_heirachy: self.parent_categories_heirachy,
-				goal_or_task:               self.goal_or_task,
-				date_created:               self.date_created,
-				zen_level:                  self.zen_level,
+			// var data = {
+		/*	self.goal = {
+				parent_categories_heirachy: self.goal.parent_categories_heirachy,
+				goal_or_task:               self.goal.goal_or_task,
+				date_created:               self.goal.date_created,
+				zen_level:                  self.goal.zen_level,
 				//reminder:                   self.reminder, not MVP
-				optional_due_date:          self.optional_due_date,
-				completed:                  self.completed,
-				priority:                   self.priority
-			}
+				optional_due_date:          self.goal.optional_due_date,
+				completed:                  self.goal.completed,
+				priority:                   self.goal.priority
+			} */
 
 			// run the goal factory's addGoal method to send the POST request with the data object we just created
-			self.api.addGoal(user_id, data).then(function success(response){
+			self.api.addGoal(user_id, self.goal).then(function success(response){
 				console.log('added a goal!')
 
 				// when we successfully finish the POST request, take the server's response (the new goal) and add
@@ -64,34 +68,34 @@
 				$window.location = '/#/profile'
 			})
 		}
-	}
-
-	function goalDetailController(goals,$routeParams,$location){
-		var self = this
-		self.name = 'Goal Detail'
-		self.api = goals  //goals factory
-
-		// the goal being processed here
-		self.goal = null
 
 		// default boolean value, which we can toggle true/false for showing/hiding the goal edit form
 		self.editing = false
 
 		// retrieve a goal via the url parameter for goalId, then set this controller's goal property
 		// to the response in order to to show it on the front-end
+		self.editGoal = function(goalId){
+			self.api.show(goalId).success(function(response){
+				self.goal = response
+				console.log( response )
+				$window.location = '#/editgoal/'+goalId
+				self.zen_level = response.zen_level
+			})
+		}
+
 		self.showGoal = function(goalId){
 			self.api.show(goalId).success(function(response){
 				self.goal = response
 			})
 		}
-		//self.showGoal($routeParams.goalId)
+		self.showGoal($routeParams.goalId)
 
 		// update the goal, on successful PATCH, set the goal object to the response from the server,
 		// which updates the front-end, then turn the editing property to false, which toggles back to
 		// show the goal details without the edit form
-		self.updateGoal = function(user_id) {
+		self.updateGoal = function() {
 
-			var goal = {
+		/*	self.goal = {
 				parent_categories_heirachy: self.parent_categories_heirachy,
 				goal_or_task:               self.goal_or_task,
 				date_created:               self.date_created,
@@ -100,14 +104,16 @@
 				optional_due_date:          self.optional_due_date,
 				completed:                  self.completed,
 				priority:                   self.priority
-			}
+			} */
 
-			self.api.updateGoal(goal).success(function(response){
+			self.api.updateGoal(self.goal).success(function(response){
 				console.log(response)
 				self.goal = response
 				self.editing = false
 			})
+			$window.location = '/#/profile'
 		}
+
 
         self.newMon = {}
 
@@ -124,11 +130,16 @@
 
 		// delete the goal using this, then afterwards, redirect the user back to /goals
 		self.removeGoal = function(goalId){
-			alert( "Fuck you bitch!")
-			self.api.removeGoal(goalId).success(function(response){
-				console.log(response)
-				$location.path('/monitor')
-			})
+			var r = confirm("Delete Goal?");
+			if (r == true) {
+				self.api.removeGoal(goalId).success(function(response){
+					console.log(response)
+					$location.path('/monitor')
+				})
+			} else {
+			    x = "You pressed Cancel!";
+			}
+
 		}
 	}
 }())
