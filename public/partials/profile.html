@@ -32,7 +32,7 @@
 
             <div ng-controller="goalsController as goalsCtrl">
               <button type="button" class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.editGoal(goal._id)">Edit Goal</button>
-              <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id)">Delete Goal</button>
+              <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id, main.user)">Delete Goal</button>
             </div>
 
             <div>
@@ -53,6 +53,7 @@
               <li>James</li>
             </ul>
           </div>
+          <button ng-click="goalsCtrl.click(main.user)">Stuff</button>
           <div class="side-bar-content visible-xs content-links">
             <h3>Goal News</h3>
             <h3>My Goals</h3>

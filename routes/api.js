@@ -244,15 +244,9 @@ apiRouter.get('/me', function(req, res) {
 //TBD In Angular get user id from token
 apiRouter.route('/goals/users/:user_id')
 	.get(function(req,res){
-		// find goals for given user
-		//User.findById(req.params.user_id, function(err, user) {
-		//	if (err) res.send(err);
-
-		//  res.json(user.goals);
-		//});
-			User.findOne({ _id: req.params.user_id})
-			  .populate('goals')
-			  .exec(function (err, user) {
+		User.findOne({ _id: req.params.user_id})
+		  .populate('goals')
+		  .exec(function (err, user) {
           if (err) {res.send(err);}
           else {
             console.log('Populated user with goals', user);
@@ -281,7 +275,7 @@ apiRouter.route('/goals/users/:user_id')
       "reminder": false,
       "completed": false,
       "priority": 10,
-      "user_id": "566f35206eb17518050f7ebe"  ***Update to userinquestion***
+      "user_id": "566f35206eb17518050f7ebe"  ***Update to user in question***
     }
 */
 		newGoal.save(function(err) {
@@ -298,8 +292,6 @@ apiRouter.route('/goals/users/:user_id')
 			  // save the goal updated user
 			  user.save(function(err) {
 				if (err) {res.send(err);}
-				// return a message
-				//else {res.json({ message: 'Goal saved in user!' });}
 			  });
             }
 		});
@@ -309,14 +301,10 @@ apiRouter.route('/goals/users/:user_id')
 //Read one, Update one and Delete one
 
 apiRouter.route('/goals/:id')
-	.get(function(req,res){ //
-		//Goal.findById(req.params.id, function(err,goal){
-		//	if(err) throw err
-		//	res.json(goal)
-		//})
-		Goal.findOne({ _id: req.params.id })
-      .populate('user_id')
-      .exec(function (err, goal) {
+	.get(function(req,res){ 
+	  Goal.findOne({ _id: req.params.id })
+        .populate('user_id')
+        .exec(function (err, goal) {
         if (err) {res.send(err);}
         //console.log('Populated goal with user %s', goal.user_id.name);
 		else {
@@ -333,39 +321,41 @@ apiRouter.route('/goals/:id')
 		})
 	})
 	.delete(function(req,res){
-		//delete from user.goals
-		console.log("params", req.params);
-    Goal.findById( req.params.id, function(err, goal) {
-			if (err) {res.send(err);}
-      else if (!goal){
-				res.send("ERROR: cannot delete null goal")
-			}else{
-        User.findById(goal.user_id, function(err, user) {
-			    if (err) res.send(err);
-          console.log("found user to delete goal out of, len " + user.goals.length)
-          for (var i = 0; i < user.goals.length; i++) {
+	  //delete from user.goals
+	  console.log("params", req.params);
+      Goal.findById( req.params.id, function(err, goal) {
+	    if (err) {
+	  	  res.send(err);
+	    }
+        else if (!goal){
+		  res.send("ERROR: cannot delete null goal")
+	    }else{
+          User.findById(goal.user_id, function(err, user) {
+		    if (err) res.send(err);
+            console.log("found user to delete goal out of, len " + user.goals.length)
+            for (var i = 0; i < user.goals.length; i++) {
         	  console.log("ids "+user.goals[i] +", "+ req.params.id)
         	  if (user.goals[i] == req.params.id) { //*** not the same so only == ***
-              user.goals.splice(i, 1);
-              console.log("spliced out "+i+" indexed goal")
-              continue;
+                user.goals.splice(i, 1);
+                console.log("spliced out "+i+" indexed goal")
+                continue;
+              }
             }
-          }
-			    // save the goal deleted user
-			    user.save(function(err) {
-				    if (err) {res.send(err);}
-				    // return a message
-				    //else {res.json({ message: 'Goal saved in user!' });}
-			    });
-			  });
-		  }
-    });
-
-		//delete from goal collection
-		Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
-			if(err) throw err
-			res.json({message:"goal deleted!"})
-		})
+	        // save the goal deleted user
+	        user.save(function(err) {
+		      if (err) {res.send(err);}
+		      else {
+		        //delete from goal collection
+		  	    Goal.findOneAndRemove({_id: req.params.id}, req.body, function(err,goal){
+			      if(err) throw err
+			      res.json({message:"goal deleted!"})
+			      //res.render('profile', {user: req.user});
+		        })
+		      }
+	        });
+	      });
+		}
+      });
 	})
 
 //TBD probably won't need

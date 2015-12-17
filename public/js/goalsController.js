@@ -34,7 +34,7 @@
 
 		self.showGoals = function(user_id){
 	      self.api.list(user_id).success(function(response){  //call factory function
-		  	self.goals = response
+		  	self.goals = response.data
 		  })
 		}
 
@@ -129,17 +129,22 @@
 		}
 
 		// delete the goal using this, then afterwards, redirect the user back to /goals
-		self.removeGoal = function(goalId){
+		self.removeGoal = function(goalId, user){
 			var r = confirm("Delete Goal?");
 			if (r == true) {
 				self.api.removeGoal(goalId).success(function(response){
 					console.log(response)
-					$location.path('/monitor')
+					// $location.path('/monitor')
+					self.showGoals( user._id )
 				})
 			} else {
 			    x = "You pressed Cancel!";
 			}
 
+		}
+
+		self.click = function( stuff ) {
+			console.log( "Hello", stuff)
 		}
 	}
 }())
