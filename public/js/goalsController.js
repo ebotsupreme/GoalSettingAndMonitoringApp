@@ -18,6 +18,7 @@
 
 		self.selectedMonitor = {};
 		self.selectMonitor = function(monitor){
+			console.log("In selectMonitor " + monitor)
 			self.selectedMonitor = monitor
 		}
 
@@ -124,6 +125,7 @@
 				self.editing = false
 			})
 			$window.location = '/#/profile'
+			location.reload();
 		}
 
         self.newMon = {}
