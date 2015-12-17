@@ -91,9 +91,10 @@ nav {
   border: 1px solid #00aee0;
   padding: 15px;
   margin-bottom: 15px;
+  background: rgba(0, 0, 0, 0.5);
 }
 .profile-user-name{
-  
+
 }
 
 /*login / sign up*/
