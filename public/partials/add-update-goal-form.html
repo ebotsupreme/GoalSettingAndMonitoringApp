@@ -1,26 +1,26 @@
       <div class="form-group">
         <label>Parent Goal(s):</label>
-        <input type="text" class="form-control" placeholder="Parent Goal(s):" ng-model="goalsCtrl.goal.parent_categories_heirachy">
+        <input type="text" class="form-control" placeholder="Parent Goal(s):" ng-model="goalsCtrl.goal.parent_categories_heirachy" required>
       </div>
       <div class="form-group">
         <label>Goal:</label>
-        <input type="text" class="form-control" placeholder="Goal:" ng-model="goalsCtrl.goal.goal_or_task">
+        <input type="text" class="form-control" placeholder="Goal:" ng-model="goalsCtrl.goal.goal_or_task" required>
       </div>
 
       <div class="form-group">
         <label>Zen Level<small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small>:</label>
-        <input type="text" class="form-control" placeholder="Zen Level:" ng-model="goalsCtrl.goal.zen_level">
+        <input type="number" class="form-control" placeholder="Zen Level:" ng-model="goalsCtrl.goal.zen_level" min="1" max="3">
       </div>
 
       <div class="input-bar-half" class="form-group pull-left">
         <label>Optional Due Date:</label>
-        <input type="text" class="form-control" placeholder="Optional Due Date:" ng-model="goalsCtrl.goal.optional_due_date">
+        <input type="date" class="form-control" placeholder="Optional Due Date:" ng-model="goalsCtrl.goal.optional_due_date">
       </div>
 
       <div class="input-bar-half" class="form-group pull-right">
       <!-- <div  id="input-bar-half"> -->
         <label>Priority<small>1=high, 10=low</small></label>
-        <input type="text" class="form-control" placeholder="Priority:" ng-model="goalsCtrl.goal.priority">
+        <input type="number" class="form-control" placeholder="Priority:" ng-model="goalsCtrl.goal.priority" min="1" max="10">
       </div>
 
       <div class="row">

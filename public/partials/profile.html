@@ -19,20 +19,22 @@
       <div class="col-md-7 col-sm-6">
         <div class="jumbotron user-profile">
           <div class="list-inline">
-          <h2 class="profile-user-name">{{main.user.name}}</h2>
+          <h2 class="profile-user-name">{{main.user.name}}'s goal profile:</h2>
           </div>
           <div ng-repeat="goal in main.user.goals | reverse" class="goal-content-border">
             <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
-            <h4 class="list-group-item-text">Goal: {{ goal.goal_or_task }}</h4>
-            <p class="list-group-item-text">Priority: {{ goal.priority }}</p>
-            <p class="list-group-item-text">Zen Level: {{ goal.zen_level }}
-            <small >(1: repeat indefinite times / maintenance activity (do a few hours per week), 2: repeat a few times only, then finished, 3: do only once)</small></p>
-            <p class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
-            <p class="list-group-item-text">Completed: {{ goal.completed }}</p>
+            <p class="list-group-item-text">Goal: {{ goal.goal_or_task }}</p>
+            <p ng-if="goal.priority" class="list-group-item-text">Priority: {{ goal.priority }}</p>
+            <p ng-if="goal.zen_level" class="list-group-item-text">Zen Level: {{ goal.zen_level }}
+            <small ng-if="goal.zen_level==1">(maintenance activity, do periodically indefinitly)</small>
+            <small ng-if="goal.zen_level==2">(repeat a few times only, then finished)</small>
+            <small ng-if="goal.zen_level==3">(achieve only one time for now)</small></p>
+            <p ng-if="goal.optional_due_date" class="list-group-item-text">Due Date: {{ goal.optional_due_date }}</p>
+            <p ng-if="goal.completed" class="list-group-item-text">Completed: {{ goal.completed }}</p>
 
             <div ng-controller="goalsController as goalsCtrl">
               <button type="button" class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.editGoal(goal._id)">Edit Goal</button>
-              <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id)">Delete Goal</button>
+              <button class="btn-monitor btn-block btn-primary" ng-click="goalsCtrl.removeGoal(goal._id, main.user)">Delete Goal</button>
             </div>
 
             <div>
@@ -85,6 +87,7 @@
               <li>James</li>
             </ul>
           </div>
+          <button ng-click="goalsCtrl.click(main.user)">Stuff</button>
           <div class="side-bar-content visible-xs content-links">
             <h3>Goal News</h3>
             <h3>My Goals</h3>
