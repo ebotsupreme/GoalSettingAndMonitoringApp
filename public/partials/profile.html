@@ -25,6 +25,7 @@
           <div ng-repeat="goal in main.user.goals | orderBy: 'priority'" class="goal-content-border">
             <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
             <p class="list-group-item-text">Goal: {{ goal.goal_or_task }}</p>
+            <p class="list-group-item-text">Date Created: {{ goal.date_created }}</p>
             <p ng-if="goal.priority" class="list-group-item-text">Priority: {{ goal.priority }}</p>
             <p ng-if="goal.zen_level" class="list-group-item-text">Zen Level: {{ goal.zen_level }}
             <small ng-if="goal.zen_level==1">(maintenance activity, do periodically indefinitly)</small>

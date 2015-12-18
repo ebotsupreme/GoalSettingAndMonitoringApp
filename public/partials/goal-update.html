@@ -1,19 +1,11 @@
-
-
 <div class="container" ng-if="main.loggedIn">
   <div class="row">
-    <div class="col-sm-12 text-center">
+    <div class="col-sm-12 goal-add-user-color">
       <h1 class="add-a-goal-header">Update Goal</h1>
+      <h2 class="text-center">Update this goal for {{main.user.name}}</h2>
+      <form id="new-goal-form" ng-submit="goalsCtrl.updateGoal()">
+        <goal-form>Update Goal</goal-form>
+    	</form>
     </div>
   </div>
-
-  <h2>{{main.user.name}}</h2>
-	<div class="jumbotron">
-
-	  <form id="new-goal-form" ng-submit="goalsCtrl.updateGoal()">
-
-        <goal-form>Update Goal</goal-form>
-
-	</form>
-	</div>
 </div>
