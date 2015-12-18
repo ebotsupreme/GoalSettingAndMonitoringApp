@@ -62,6 +62,12 @@
           controller : 'goalsController',
           controllerAs : 'goalsCtrl'
         })
+        // d3
+        //.when('/d3_monitor', {
+        //  templateUrl : 'partials/d3_monitor.html',
+        //  controller : 'goalsController',
+        //  controllerAs : 'goalsCtrl'
+        //})
         // home page w/o logging in
         .otherwise({
           redirectTo: '/home'
