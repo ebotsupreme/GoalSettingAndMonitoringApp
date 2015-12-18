@@ -159,6 +159,13 @@ nav {
 .add-a-goal-header{
   text-align: center;
 }
+.form-background{
+  background: #e04700;
+  color: #fff;
+}
+.btn-border{
+  border: 2px solid #fff;
+}
 
 /*goal monitor and form*/
 .btn-monitor{
