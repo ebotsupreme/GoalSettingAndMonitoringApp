@@ -140,21 +140,20 @@ nav {
   margin-bottom: 15px;
   background: rgba(0, 0, 0, 0.5);
 }
-.profile-user-name{
 
-}
 
 /*login / sign up*/
 
 .input-bar-half{
   width: 50%;
-  padding: 15px;
 }
 .completed-placement{
   margin: 2px 18px 10px;
+  padding-top: 10px;
 }
 .checkbox-border{
   border: 0px;
+  background-color: #e04700;
 }
 .add-a-goal-header{
   text-align: center;
@@ -187,8 +186,34 @@ nav {
 }
 
 .user-monitor-input{
-  color:#e04700
+  color:#e04700;
 }
+
+.form-background-monitor{
+  background: #e04700;
+  padding: 40px;
+  color: #fff;
+}
+.goal-add-user-color{
+  color: #e04700;
+}
+.checkbox-completed-padding{
+  padding-top: 10px;
+}
+
+/*sign up*/
+.sign-up-form{
+  background: #e04700;
+  color: #fff;
+  padding-top: 80px;
+  margin-bottom: 10px;
+  width: auto;
+}
+.sign-up-container{
+  margin: 0 auto;
+}
+
+
 
 /*modal*/
 .modal-body{
