@@ -55,18 +55,8 @@
 		//self.addGoal = function(parent_categories_heirachy, goal_or_task, date_created,
 		//	zen_level, reminder, optional_due_date, completed, priority) {
 		self.addGoal = function(user_id) {
-
-			// var data = {
-		/*	self.goal = {
-				parent_categories_heirachy: self.goal.parent_categories_heirachy,
-				goal_or_task:               self.goal.goal_or_task,
-				date_created:               self.goal.date_created,
-				zen_level:                  self.goal.zen_level,
-				//reminder:                   self.reminder, not MVP
-				optional_due_date:          self.goal.optional_due_date,
-				completed:                  self.goal.completed,
-				priority:                   self.goal.priority
-			} */
+			// set a high priority if completed so as to sort lower
+			if (self.goal.completed) self.goal.priority = 11;
 
 			// run the goal factory's addGoal method to send the POST request with the data object we just created
 			self.api.addGoal(user_id, self.goal).then(function success(response){
@@ -107,25 +97,17 @@
 		// which updates the front-end, then turn the editing property to false, which toggles back to
 		// show the goal details without the edit form
 		self.updateGoal = function() {
-
-		/*	self.goal = {
-				parent_categories_heirachy: self.parent_categories_heirachy,
-				goal_or_task:               self.goal_or_task,
-				date_created:               self.date_created,
-				zen_level:                  self.zen_level,
-				//reminder:                   self.reminder, not MVP
-				optional_due_date:          self.optional_due_date,
-				completed:                  self.completed,
-				priority:                   self.priority
-			} */
+			// set a high priority if completed so as to sort lower
+			if (self.goal.completed) self.goal.priority = 11;
 
 			self.api.updateGoal(self.goal).success(function(response){
 				console.log(response)
 				self.goal = response
 				self.editing = false
-			})
+			
 			$window.location = '/#/profile'
-			location.reload();
+			//location.reload();
+		  })
 		}
 
         self.newMon = {}
