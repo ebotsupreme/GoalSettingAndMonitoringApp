@@ -11,7 +11,7 @@
       <div class="col-md-3 col-sm-3">
         <div class="side-bar">
           <div class="side-bar-content hidden-xs content-links">
-            <h3><a href="/#/home">Home</a></h3>
+            <h3><a href="/#/home">All Users' Goals</a></h3>
             <h3><a href="/#/monitor">Monitor Goals</a></h3>
             <h3><a href="/#/addgoal">Add Goal</a></h3>
           </div>
@@ -22,7 +22,7 @@
           <div class="list-inline">
           <h2 class="profile-user-name">{{main.user.name}}'s goal profile:</h2>
           </div>
-          <div ng-repeat="goal in main.user.goals | reverse" class="goal-content-border">
+          <div ng-repeat="goal in main.user.goals | orderBy: 'priority'" class="goal-content-border">
             <p class="list-group-item-text">Goal Category: {{ goal.parent_categories_heirachy }}</p>
             <p class="list-group-item-text">Goal: {{ goal.goal_or_task }}</p>
             <p ng-if="goal.priority" class="list-group-item-text">Priority: {{ goal.priority }}</p>
